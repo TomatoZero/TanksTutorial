@@ -22,5 +22,10 @@ namespace TankTutorial.Scripts.Player
                 particle.Stop();
             }
         }
+
+        public void DeathEventHandler()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
