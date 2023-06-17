@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace TankTutorial.Player
+namespace TankTutorial.Scripts.Player
 {
     public class AudioController : MonoBehaviour
     {

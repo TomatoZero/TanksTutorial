@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TankTutorial.Player
+namespace TankTutorial.Scripts.Player
 {
     public class InputController : MonoBehaviour
     {
