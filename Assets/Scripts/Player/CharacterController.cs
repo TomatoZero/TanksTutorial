@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Complete
+namespace TankTutorial.Scripts.Player
 {
     public class CharacterController : MonoBehaviour
     {
