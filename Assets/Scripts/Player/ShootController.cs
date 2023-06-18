@@ -39,6 +39,8 @@ namespace TankTutorial.Scripts.Player
 
         public void ShootEventHandler(InputAction.CallbackContext context)
         {
+            // Debug.Log($"context {context}");
+            
             if (context.started)
             {
                 _isFired = false;
