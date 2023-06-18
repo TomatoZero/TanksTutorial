@@ -8,8 +8,8 @@ namespace TankTutorial.Scripts.Player
     {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private int _plyerNum;
-        [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _turnSpeed;
+        [SerializeField] private float _moveSpeed = 12f;
+        [SerializeField] private float _turnSpeed = 180f;
 
         private Vector2 _moveDirection;
 

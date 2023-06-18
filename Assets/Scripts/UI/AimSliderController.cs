@@ -1,19 +1,21 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AimSliderController : MonoBehaviour
+namespace TankTutorial.Managers
 {
-    [SerializeField] private Slider _aimSlider;
-
-    public float AimSlider
+    public class AimSliderController : MonoBehaviour
     {
-        get => _aimSlider.value;
-        set => _aimSlider.value = value;
-    }
+        [SerializeField] private Slider _aimSlider;
 
-    private void Start()
-    {
-        AimSlider = 15f;
+        public float AimSlider
+        {
+            get => _aimSlider.value;
+            set => _aimSlider.value = value;
+        }
+
+        private void Start()
+        {
+            AimSlider = 15f;
+        }
     }
 }

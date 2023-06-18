@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
+using TankTutorial.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace TankTutorial.Scripts.Player
 {
@@ -23,6 +22,7 @@ namespace TankTutorial.Scripts.Player
 
         private void Start()
         {
+            _isFired = true;
             _chargeSpeed = (_maxLaunchForce - _minLaunchForce) / _maxLaunchForce;
         }
 
@@ -32,7 +32,7 @@ namespace TankTutorial.Scripts.Player
             {
                 _currentLaunchForce += (_maxLaunchForce - 0) * Time.deltaTime;
                 _aimSlider.AimSlider = _currentLaunchForce;
-                
+
                 // Debug.Log($"deltatime {Time.deltaTime} {_chargeSpeed} * {Time.deltaTime * _chargeSpeed}");
             }
         }
@@ -46,7 +46,8 @@ namespace TankTutorial.Scripts.Player
                 StartCoroutine(ShootHoldTimer());
             }
             else if (context.performed)
-            { }
+            {
+            }
             else if (context.canceled)
             {
                 StopCoroutine(ShootHoldTimer());
@@ -56,10 +57,10 @@ namespace TankTutorial.Scripts.Player
 
         private IEnumerator ShootHoldTimer()
         {
-            if(!_isFired)
+            if (!_isFired)
             {
                 yield return new WaitForSeconds(_maxChargeTime);
-                if(!_isFired)
+                if (!_isFired)
                 {
                     _currentLaunchForce = _maxLaunchForce;
                     Shoot();
