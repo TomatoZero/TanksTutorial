@@ -9,6 +9,10 @@ namespace TankTutorial.Scripts.Player
         [SerializeField] private AudioClip _engineIdle;
         [SerializeField] private AudioClip _engineDriving;
         [SerializeField] private float _pitchRange;
+        [Space]
+        [SerializeField] private AudioSource _effectAudio;
+        [SerializeField] private AudioClip _charginClip;
+        [SerializeField] private AudioClip _fireClip;
 
         private float _originalPitch;
         private Vector2 _moveDirection;
@@ -42,6 +46,23 @@ namespace TankTutorial.Scripts.Player
                     _movementAudio.Play();
                 }
             }
+        }
+
+        public void ShootEventHandler(InputAction.CallbackContext context)
+        {
+            if(context.started)
+            {
+                _effectAudio.clip = _charginClip;
+                _effectAudio.Play();
+            }
+        }
+
+        public void FiredEventHandler()
+        {
+            _effectAudio.Stop();
+            
+            _effectAudio.clip = _fireClip;
+            _effectAudio.Play();
         }
     }
 }

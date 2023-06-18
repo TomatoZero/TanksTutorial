@@ -14,13 +14,20 @@ namespace TankTutorial.Scripts
         [SerializeField] private float _maxLifeTime = 2f;
         [SerializeField] private float _explosionRadius = 5f;
 
+        private bool _canExplode; 
+        
         private void Start()
         {
             Destroy(gameObject, _maxLifeTime);
+            _canExplode = true;
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            if (this.gameObject.TryGetComponent(out Rigidbody rigidbody))
+            {
+                rigidbody.velocity = Vector3.zero;
+            }
             var hitColliders = new Collider[10];
             var size = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, hitColliders, _pLayerMask); //Like Physics.OverlapSphere, but generates no garbage; from docs
 
@@ -38,12 +45,15 @@ namespace TankTutorial.Scripts
                 }
             }
 
-            _exposionParticle.transform.parent = null;
-            _exposionParticle.Play();
-            _explosionSource.Play();
-            
-            Destroy(_exposionParticle.gameObject, _exposionParticle.duration);
-            
+            if(_canExplode)
+            {
+                _canExplode = false;
+                _exposionParticle.transform.parent = null;
+                _exposionParticle.Play();
+                _explosionSource.Play();
+
+                Destroy(_exposionParticle.gameObject, _exposionParticle.main.duration);
+            }
         }
 
         private float CalculateDamage(Vector3 targetPosition)
