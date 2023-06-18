@@ -14,6 +14,11 @@ namespace TankTutorial.Scripts.Player
         private int _currentHp;
         private bool _isDead;
 
+        private void OnEnable()
+        {
+            _isDead = false;
+        }
+
         private void Start()
         {
             _currentHp = _startHp;
@@ -22,7 +27,7 @@ namespace TankTutorial.Scripts.Player
 
         public void HealthReduce(int hp)
         {
-            if (hp <= 0) throw new Exception("Damage less or equal zero");
+            if (hp < 0) throw new Exception($"Damage less then zero {hp}");
 
             _currentHp -= hp;
 

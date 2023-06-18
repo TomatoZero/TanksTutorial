@@ -17,9 +17,30 @@ namespace TankTutorial.Managers
 
         private MovementController _movement;                       
         private ShootController _shooting;                       
-        private GameObject _canvasGameObject;                  
+        private GameObject _canvasGameObject;
 
-        
+        public string PlayerName
+        {
+            get => _playerName;
+            set => _playerName = value;
+        }
+
+        public GameObject Instance
+        {
+            get => _instance;
+            set => _instance = value;
+        }
+
+        public int Wins
+        {
+            get => _wins;
+            set => _wins = value;
+        }
+
+        public string ColoredPlayerText => _coloredPlayerText;
+
+        public Transform SpawnPoint => _spawnPoint;
+
         public void Setup ()
         {
             _movement = _instance.GetComponent<MovementController> ();
