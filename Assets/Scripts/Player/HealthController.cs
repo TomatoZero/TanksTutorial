@@ -8,7 +8,7 @@ namespace TankTutorial.Scripts.Player
     public class HealthController : MonoBehaviour
     {
         [SerializeField] private int _startHp = 100;
-        [SerializeField] private HealthEvent _healthReduceEvent;
+        [FormerlySerializedAs("_healthReduceEvent")] [SerializeField] private HealthEvent _setCurrentHpEvent;
         [SerializeField] private UnityEvent _deathEvent;
 
         private int _currentHp;
@@ -17,12 +17,17 @@ namespace TankTutorial.Scripts.Player
         private void OnEnable()
         {
             _isDead = false;
+            _currentHp = _startHp;
+            
+            _setCurrentHpEvent.Invoke(_currentHp);
         }
 
         private void Start()
         {
             _currentHp = _startHp;
             _isDead = false;
+            
+            _setCurrentHpEvent.Invoke(_currentHp);
         }
 
         public void HealthReduce(int hp)
@@ -33,8 +38,8 @@ namespace TankTutorial.Scripts.Player
 
             if (_currentHp <= 0 && !_isDead)
                 Death();
-            
-            _healthReduceEvent.Invoke(_currentHp);
+
+            _setCurrentHpEvent.Invoke(_currentHp);
         }
 
         private void Death()

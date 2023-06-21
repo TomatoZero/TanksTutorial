@@ -193,7 +193,7 @@
                 {
                     "name": "right",
                     "id": "af45873a-1761-42a0-9b13-f2ba340d7f4f",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
