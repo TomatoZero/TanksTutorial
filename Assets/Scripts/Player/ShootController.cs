@@ -23,7 +23,7 @@ namespace TankTutorial.Scripts.Player
         private void Start()
         {
             _isFired = true;
-            _chargeSpeed = (_maxLaunchForce - _minLaunchForce) / _maxLaunchForce;
+            _chargeSpeed = (_maxLaunchForce - _minLaunchForce) / _maxChargeTime;
         }
 
         private void Update()
