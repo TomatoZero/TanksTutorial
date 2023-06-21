@@ -1,6 +1,7 @@
 using System;
 using TankTutorial.Scripts.Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace TankTutorial.Managers
 {
@@ -16,7 +17,8 @@ namespace TankTutorial.Managers
         private int _wins;
 
         private MovementController _movement;                       
-        private ShootController _shooting;                       
+        private ShootController _shooting;
+        private PlayerInput _inputController;
         private GameObject _canvasGameObject;
 
         public string PlayerName
@@ -45,6 +47,7 @@ namespace TankTutorial.Managers
         {
             _movement = _instance.GetComponent<MovementController> ();
             _shooting = _instance.GetComponent<ShootController> ();
+            _inputController = _instance.GetComponent<PlayerInput>();
             _canvasGameObject = _instance.GetComponentInChildren<Canvas> ().gameObject;
 
             _coloredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(_color) + ">PLAYER " + _playerName + "</color>";
@@ -55,17 +58,21 @@ namespace TankTutorial.Managers
         
         public void DisableControl ()
         {
-            _movement.enabled = false;
-            _shooting.enabled = false;
+            // _movement.enabled = false;
+            // _shooting.enabled = false;
+
+            _inputController.enabled = false;
 
             _canvasGameObject.SetActive (false);
         }
 
         public void EnableControl ()
         {
-            _movement.enabled = true;
-            _shooting.enabled = true;
+            // _movement.enabled = true;
+            // _shooting.enabled = true;
 
+            _inputController.enabled = true;
+            
             _canvasGameObject.SetActive (true);
         }
         

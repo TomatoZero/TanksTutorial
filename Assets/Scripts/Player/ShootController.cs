@@ -30,7 +30,7 @@ namespace TankTutorial.Scripts.Player
         {
             if (!_isFired)
             {
-                _currentLaunchForce += (_maxLaunchForce - 0) * Time.deltaTime;
+                _currentLaunchForce += _chargeSpeed * Time.deltaTime;
                 _aimSlider.AimSlider = _currentLaunchForce;
 
                 // Debug.Log($"deltatime {Time.deltaTime} {_chargeSpeed} * {Time.deltaTime * _chargeSpeed}");
@@ -74,8 +74,8 @@ namespace TankTutorial.Scripts.Player
         {
             if (_isFired) return;
 
-            _firedEvent.Invoke();
             _isFired = true;
+            _firedEvent.Invoke();
 
             var shellInstant = Instantiate(_shell, _fireTransform.position, _fireTransform.rotation);
 
