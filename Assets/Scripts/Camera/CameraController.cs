@@ -13,6 +13,5 @@ namespace TankTutorial.Scripts.Camera
         {
             _targetGroup.AddMember(playerInput.gameObject.transform, 1, 10);
         }
-
     }
 }
