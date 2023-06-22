@@ -1,6 +1,5 @@
 using TankTutorial.Scripts.Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace TankTutorial.Scripts
 {
@@ -14,8 +13,8 @@ namespace TankTutorial.Scripts
         [SerializeField] private float _maxLifeTime = 2f;
         [SerializeField] private float _explosionRadius = 5f;
 
-        private bool _canExplode; 
-        
+        private bool _canExplode;
+
         private void Start()
         {
             Destroy(gameObject, _maxLifeTime);
@@ -28,12 +27,14 @@ namespace TankTutorial.Scripts
             {
                 rigidbody.velocity = Vector3.zero;
             }
+
             var hitColliders = new Collider[10];
-            var size = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, hitColliders, _pLayerMask); //Like Physics.OverlapSphere, but generates no garbage; from docs
+            var size = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, hitColliders,
+                _pLayerMask); //Like Physics.OverlapSphere, but generates no garbage; from docs
 
             foreach (var hitCollider in hitColliders)
             {
-                if(hitCollider == null) break;
+                if (hitCollider == null) break;
                 if (hitCollider.TryGetComponent(out Rigidbody rb))
                 {
                     rb.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
@@ -45,7 +46,7 @@ namespace TankTutorial.Scripts
                 }
             }
 
-            if(_canExplode)
+            if (_canExplode)
             {
                 _canExplode = false;
                 _exposionParticle.transform.parent = null;

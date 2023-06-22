@@ -18,22 +18,22 @@ namespace TankTutorial.Managers
                 _tanks[i].Setup();
             }
         }
-        
+
         public void ResetAllTanks()
         {
             foreach (var tank in _tanks) tank.Reset();
         }
-        
+
         public void EnableTankControl()
         {
             foreach (var tank in _tanks) tank.EnableControl();
         }
-        
+
         public void DisableTankControl()
         {
             foreach (var tank in _tanks) tank.DisableControl();
         }
-        
+
         public bool OneTankLeft()
         {
             var numTanksLeft = 0;
@@ -46,7 +46,7 @@ namespace TankTutorial.Managers
 
             return numTanksLeft <= 1;
         }
-        
+
         public TankManager GetRoundWinner()
         {
             for (int i = 0; i < _tanks.Count; i++)
@@ -57,7 +57,7 @@ namespace TankTutorial.Managers
 
             return null;
         }
-        
+
         public TankManager GetGameWinner(int numRoundsToWin)
         {
             for (int i = 0; i < _tanks.Count; i++)

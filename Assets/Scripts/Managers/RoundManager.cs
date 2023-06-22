@@ -91,21 +91,21 @@ namespace TankTutorial.Managers
 
             yield return _endWait;
         }
-        
+
         private string EndMessage()
         {
             string message = "DRAW!";
-            
+
             if (_roundWinner != null)
                 message = _roundWinner.ColoredPlayerText + " WINS THE ROUND!";
-            
+
             message += "\n\n\n\n";
 
             message += _spawnersManager.GetScore();
-            
+
             if (_gameWinner != null)
                 message = _gameWinner.ColoredPlayerText + " WINS THE GAME!";
-            
+
             return message;
         }
     }

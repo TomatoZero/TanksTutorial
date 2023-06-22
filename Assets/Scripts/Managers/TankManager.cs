@@ -12,11 +12,11 @@ namespace TankTutorial.Managers
         [SerializeField] private Transform _spawnPoint;
 
         private string _playerName;
-        private string _coloredPlayerText;    
-        private GameObject _instance;       
+        private string _coloredPlayerText;
+        private GameObject _instance;
         private int _wins;
 
-        private MovementController _movement;                       
+        private MovementController _movement;
         private ShootController _shooting;
         private PlayerInput _inputController;
         private GameObject _canvasGameObject;
@@ -43,46 +43,47 @@ namespace TankTutorial.Managers
 
         public Transform SpawnPoint => _spawnPoint;
 
-        public void Setup ()
+        public void Setup()
         {
-            _movement = _instance.GetComponent<MovementController> ();
-            _shooting = _instance.GetComponent<ShootController> ();
+            _movement = _instance.GetComponent<MovementController>();
+            _shooting = _instance.GetComponent<ShootController>();
             _inputController = _instance.GetComponent<PlayerInput>();
-            _canvasGameObject = _instance.GetComponentInChildren<Canvas> ().gameObject;
+            _canvasGameObject = _instance.GetComponentInChildren<Canvas>().gameObject;
 
-            _coloredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(_color) + ">PLAYER " + _playerName + "</color>";
-            
-            var renderers = _instance.GetComponentsInChildren<MeshRenderer> ();
+            _coloredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(_color) + ">PLAYER " + _playerName +
+                                 "</color>";
+
+            var renderers = _instance.GetComponentsInChildren<MeshRenderer>();
             foreach (var mesh in renderers) mesh.material.color = _color;
         }
-        
-        public void DisableControl ()
+
+        public void DisableControl()
         {
             // _movement.enabled = false;
             // _shooting.enabled = false;
 
             _inputController.enabled = false;
 
-            _canvasGameObject.SetActive (false);
+            _canvasGameObject.SetActive(false);
         }
 
-        public void EnableControl ()
+        public void EnableControl()
         {
             // _movement.enabled = true;
             // _shooting.enabled = true;
 
             _inputController.enabled = true;
-            
-            _canvasGameObject.SetActive (true);
+
+            _canvasGameObject.SetActive(true);
         }
-        
-        public void Reset ()
+
+        public void Reset()
         {
             _instance.transform.position = _spawnPoint.position;
             _instance.transform.rotation = _spawnPoint.rotation;
 
-            _instance.SetActive (false);
-            _instance.SetActive (true);
+            _instance.SetActive(false);
+            _instance.SetActive(true);
         }
     }
 }
