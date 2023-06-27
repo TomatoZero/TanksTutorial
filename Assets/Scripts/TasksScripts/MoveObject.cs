@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace TankTutorial.Scripts.TaskScripts
@@ -13,5 +12,5 @@ namespace TankTutorial.Scripts.TaskScripts
         {
             _rigidbody.MovePosition(_rigidbody.position + _moveDirection.normalized * (_speed * Time.fixedDeltaTime));
         }
-    }   
+    }
 }
