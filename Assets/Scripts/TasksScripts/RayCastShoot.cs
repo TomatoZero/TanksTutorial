@@ -7,6 +7,8 @@ namespace TankTutorial.Scripts.TaskScripts
     {
         [SerializeField] private Transform _fireTransform;
         [SerializeField] private float _raycastLength;
+        [SerializeField] private bool _useSphereCast = false;
+        [SerializeField, Range(0.1f, 20)] private float _radius;
 
         private bool _isFired;
 
@@ -14,17 +16,7 @@ namespace TankTutorial.Scripts.TaskScripts
         {
             if (context.started)
             {
-                var ray = new Ray(_fireTransform.position, _fireTransform.forward);
-                if (Physics.Raycast(ray, out var result, _raycastLength))
-                {
-                    Debug.Log($"Collide with {result.collider.gameObject.name}");
-                    Debug.DrawRay(_fireTransform.position, _fireTransform.forward * _raycastLength, Color.blue, 1);
-
-
-                    (result.transform.gameObject.GetComponent<MeshRenderer>()).material.color = Color.red;
-                    var renderers = result.transform.gameObject.GetComponentsInChildren<MeshRenderer>();
-                    foreach (var mesh in renderers) mesh.material.color = Color.red;
-                }
+                ShootStart();   
             }
             else if (context.performed)
             {
@@ -32,6 +24,28 @@ namespace TankTutorial.Scripts.TaskScripts
             else if (context.canceled)
             {
             }
+        }
+
+        private void ShootStart()
+        {
+            var ray = new Ray(_fireTransform.position, _fireTransform.forward);
+            if (!_useSphereCast)
+            {
+                if (Physics.Raycast(ray, out var hitInfo, _raycastLength)) RayCastOutput(hitInfo);
+            }
+            else
+            {
+                if(Physics.SphereCast(ray, _radius, out var hitInfo, _raycastLength)) RayCastOutput(hitInfo);
+            }
+        }
+        
+        private void RayCastOutput(RaycastHit hit)
+        {
+            Debug.Log($"Collide with {hit.collider.gameObject.name}");
+            Debug.DrawRay(_fireTransform.position, _fireTransform.forward * _raycastLength, Color.blue, 1);
+            
+            var renderers = hit.transform.gameObject.GetComponentsInChildren<MeshRenderer>();
+            foreach (var mesh in renderers) mesh.material.color = Color.red;
         }
     }
 }
