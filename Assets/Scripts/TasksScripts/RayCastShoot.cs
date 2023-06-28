@@ -45,7 +45,7 @@ namespace TankTutorial.Scripts.TaskScripts
             Debug.DrawRay(_fireTransform.position, _fireTransform.forward * _raycastLength, Color.blue, 1);
             
             var renderers = hit.transform.gameObject.GetComponentsInChildren<MeshRenderer>();
-            foreach (var mesh in renderers) mesh.material.color = Color.red;
+            foreach (var mesh in renderers) mesh.material = Resources.Load("TankTutorial/Materials/Red") as Material;
         }
     }
 }
