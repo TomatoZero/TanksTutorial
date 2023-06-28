@@ -17,6 +17,8 @@ namespace TankTutorial.Scripts.Player
         private int _currentHp;
         private bool _isDead;
 
+        public int CurrentHp => _currentHp;
+
         private void OnEnable()
         {
             _isDead = false;
@@ -42,6 +44,14 @@ namespace TankTutorial.Scripts.Player
             if (_currentHp <= 0 && !_isDead)
                 Death();
 
+            _setCurrentHpEvent.Invoke(_currentHp);
+        }
+
+        public void SetCurrentHp(int hp)
+        {
+            if(hp <= 0) return;
+            
+            _currentHp = hp;
             _setCurrentHpEvent.Invoke(_currentHp);
         }
 
