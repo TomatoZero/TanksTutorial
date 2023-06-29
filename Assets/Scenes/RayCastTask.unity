@@ -6956,17 +6956,17 @@ PrefabInstance:
     - target: {fileID: 760704954449676670, guid: cf35d97bbdbac594b9c5e604bbe25a2c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.42
+      value: -4.213
       objectReference: {fileID: 0}
     - target: {fileID: 760704954449676670, guid: cf35d97bbdbac594b9c5e604bbe25a2c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.25
+      value: 2.354
       objectReference: {fileID: 0}
     - target: {fileID: 760704954449676670, guid: cf35d97bbdbac594b9c5e604bbe25a2c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.667
+      value: -10.281
       objectReference: {fileID: 0}
     - target: {fileID: 760704954449676670, guid: cf35d97bbdbac594b9c5e604bbe25a2c,
         type: 3}
@@ -7007,6 +7007,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PP_Sword_0080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579307715515057849, guid: cf35d97bbdbac594b9c5e604bbe25a2c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf35d97bbdbac594b9c5e604bbe25a2c, type: 3}
