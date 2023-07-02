@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TankTutorial.Managers
+namespace TankTutorial.Scripts.UI
 {
     public class AimSliderController : MonoBehaviour
     {

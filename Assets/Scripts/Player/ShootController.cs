@@ -1,5 +1,5 @@
 using System.Collections;
-using TankTutorial.Managers;
+using TankTutorial.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;

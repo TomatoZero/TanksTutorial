@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JsonSchemaMappingsProjectConfiguration">
+    <state>
+      <map>
+        <entry key="Unity Assembly Definition Reference">
+          <value>
+            <SchemaInfo>
+              <option name="name" value="Unity Assembly Definition Reference" />
+              <option name="relativePathToSchema" value="https://json.schemastore.org/asmref.json" />
+              <option name="applicationDefined" value="true" />
+              <option name="patterns">
+                <list>
+                  <Item>
+                    <option name="path" value="Assets/StreamingAssets/statistic.json" />
+                  </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
+      </map>
+    </state>
+  </component>
+</project>

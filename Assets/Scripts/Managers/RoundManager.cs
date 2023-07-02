@@ -1,4 +1,5 @@
 using System.Collections;
+using TankTutorial.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,7 @@ namespace TankTutorial.Managers
 {
     public class RoundManager : MonoBehaviour
     {
-        [SerializeField] private int _numRoundToWin = 5;
+        [SerializeField] private int _numRoundToWin = 1;
         [SerializeField] private float _startDelay = 3;
         [SerializeField] private float _endDelay = 3;
 
@@ -104,9 +105,24 @@ namespace TankTutorial.Managers
             message += _spawnersManager.GetScore();
 
             if (_gameWinner != null)
+            {
                 message = _gameWinner.ColoredPlayerText + " WINS THE GAME!";
+                var gameSum = GetRoundSum();
+                JsonSerializer.Save("statistic" ,gameSum);
+            }
 
             return message;
+        }
+
+        private RoundSum GetRoundSum()
+        {
+            var firstPlayerWins = _spawnersManager.GetScore(0);
+            var secondPlayerWins = _spawnersManager.GetScore(1);
+            
+            var output = new RoundSum();
+            output.InsertValue(firstPlayerWins, secondPlayerWins);
+            
+            return output;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,11 @@ namespace TankTutorial.Managers
     {
         [SerializeField] private List<TankManager> _tanks;
         [SerializeField] private GameObject _tankPrefab;
-
+        
+        public event Action ResetEvent;
+        public event Action EnableEvent;
+        public event Action DisableEvent;
+        
         public void SpawnAllTanks()
         {
             for (int i = 0; i < _tanks.Count; i++)
@@ -16,22 +21,26 @@ namespace TankTutorial.Managers
                     Instantiate(_tankPrefab, _tanks[i].SpawnPoint.position, _tanks[i].SpawnPoint.rotation);
                 _tanks[i].PlayerName = $"{i + 1}";
                 _tanks[i].Setup();
+                
+                ResetEvent += _tanks[i].Reset;
+                EnableEvent += _tanks[i].EnableControl;
+                DisableEvent += _tanks[i].DisableControl;
             }
         }
 
         public void ResetAllTanks()
         {
-            foreach (var tank in _tanks) tank.Reset();
+            ResetEvent?.Invoke();
         }
 
         public void EnableTankControl()
         {
-            foreach (var tank in _tanks) tank.EnableControl();
+            EnableEvent?.Invoke();
         }
 
         public void DisableTankControl()
         {
-            foreach (var tank in _tanks) tank.DisableControl();
+            DisableEvent?.Invoke();
         }
 
         public bool OneTankLeft()
@@ -78,6 +87,16 @@ namespace TankTutorial.Managers
             }
 
             return message;
+        }
+
+        public int GetScore(int i)
+        {
+            if (i < 0 || i >= _tanks.Count)
+            {
+                throw new IndexOutOfRangeException($"index {i}, list count: {_tanks.Count}");
+            }
+
+            return _tanks[i].Wins;
         }
     }
 }
