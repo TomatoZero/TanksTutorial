@@ -1,4 +1,4 @@
-using System;
+using System.IO;
 using UnityEngine;
 
 namespace TankTutorial.Scripts
@@ -8,21 +8,18 @@ namespace TankTutorial.Scripts
         public static void Save(string fileName, RoundSum sum)
         {
             var collection = Deserialize<Statistic>(fileName);
-            
-            collection.Add(sum);
-            // else collection = new Statistic();
 
-            // Debug.Log($"{String.Join(' ', collection._rounds)}");
-            
+            collection.Add(sum);
+
             var json = Serialize(collection);
-            SaveData(fileName, json);            
+            SaveData(fileName, json);
         }
 
         public static T Read<T>(string fileName)
         {
             return Deserialize<T>(fileName);
         }
-        
+
         private static string Serialize(Statistic stat)
         {
             return JsonUtility.ToJson(stat);
@@ -32,14 +29,14 @@ namespace TankTutorial.Scripts
         {
             var path = Application.streamingAssetsPath + $"/{fileName}.json";
 
-            var json = System.IO.File.ReadAllText(path);
+            var json = File.ReadAllText(path);
 
             return JsonUtility.FromJson<T>(json);
         }
-        
-        private static void SaveData(string fileName,string data)
+
+        private static void SaveData(string fileName, string data)
         {
-            System.IO.File.WriteAllText(Application.streamingAssetsPath + $"/{fileName}.json", data);
+            File.WriteAllText(Application.streamingAssetsPath + $"/{fileName}.json", data);
         }
     }
 }

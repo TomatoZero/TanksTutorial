@@ -21,6 +21,14 @@ namespace TankTutorial.Scripts.UI
             InsertStats();
         }
 
+        public void ShowStats(Statistic statistic)
+        {
+            SetActive(true);
+            ClearList();
+            _stats = statistic;
+            InsertStats();
+        }
+
         public void HideStats()
         {
             SetActive(false);
