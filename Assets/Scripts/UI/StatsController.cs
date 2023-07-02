@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TankTutorial.Scripts.UI
@@ -10,6 +11,8 @@ namespace TankTutorial.Scripts.UI
         public delegate void DestroyChildren();
 
         public event DestroyChildren destroyChildrenEvent;
+
+        public Statistic Stats => _stats;
 
         private Statistic _stats;
 
@@ -41,7 +44,7 @@ namespace TankTutorial.Scripts.UI
         
         private void Add(RoundSum round)
         {
-            var roundStats = Instantiate(_statsPrefab, _content).GetComponent<RoundStats>();
+            var roundStats = Instantiate(_statsPrefab, _content).GetComponent<IRoundStats>();
             roundStats.Insert(round._winner.ToString(), round._firstTankWins.ToString(),
                 round._secondTankWins.ToString(), round._data.ToString());
             destroyChildrenEvent += roundStats.Destroy;

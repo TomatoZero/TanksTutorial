@@ -1,35 +1,78 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class HttpClient
+public class HttpClient : MonoBehaviour
 {
-    private readonly string _url;
-    private readonly List<RequestHeaderData> _request;
+    private string _url;
+    private List<RequestHeaderData> _request;
 
     private UnityWebRequest _webRequest;
+    
+    public delegate void OnDataReceivedEventHandler(string data);
+    public event OnDataReceivedEventHandler DataReceivedEvent;
 
-    public HttpClient(string url, List<RequestHeaderData> request)
+    public void InsertData(string url, List<RequestHeaderData> request)
     {
         _url = url;
         _request = request;
     }
 
-    public async Task<T> Get<T>()
+    public void Get<T>()
+    {
+        StartCoroutine(GetData<T>());
+    }
+
+    public void Post<T>(T input)
+    {
+        StartCoroutine(PostData<T>(input));
+    }
+
+    private IEnumerator GetData<T>()
     {
         using var webRequest = UnityWebRequest.Get(_url);
+        yield return webRequest.SendWebRequest();
 
-        SetHeadData(webRequest);
-
-        var operation = webRequest.SendWebRequest();
-
-        while (!operation.isDone)
-            await Task.Yield();
-
-        return GetRequestResultHandler<T>(webRequest);
+        var pages = _url.Split('/');
+        var page = pages.Length - 1;
+        
+        switch (webRequest.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                break;
+            case UnityWebRequest.Result.Success:
+                Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                DataReceivedEvent?.Invoke(webRequest.downloadHandler.text);
+                break;
+        }
     }
+    
+    private IEnumerator PostData<T>(T input)
+    {
+        var json = JsonUtility.ToJson(input);
+
+        using var request = UnityWebRequest.Post(_url, json);
+        
+        yield return request.SendWebRequest();
+    
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(request.error);
+        }
+        else
+        {
+            Debug.Log($"Form upload complete! {request.downloadHandler.text}");
+        }
+    }
+    
 
     private T GetRequestResultHandler<T>(UnityWebRequest webRequest)
     {
@@ -51,7 +94,6 @@ public class HttpClient
 
         return default;
     }
-
     private void SetHeadData(UnityWebRequest web)
     {
         foreach (var data in _request)
