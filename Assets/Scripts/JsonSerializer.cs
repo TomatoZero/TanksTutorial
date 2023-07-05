@@ -1,4 +1,6 @@
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace TankTutorial.Scripts
@@ -7,6 +9,7 @@ namespace TankTutorial.Scripts
     {
         public static void Save(string fileName, RoundSum sum)
         {
+            TryCreate(fileName);
             var collection = Deserialize<Statistic>(fileName);
 
             collection.Add(sum);
@@ -17,6 +20,7 @@ namespace TankTutorial.Scripts
 
         public static T Read<T>(string fileName)
         {
+            TryCreate(fileName);
             return Deserialize<T>(fileName);
         }
 
@@ -28,29 +32,31 @@ namespace TankTutorial.Scripts
         private static T Deserialize<T>(string fileName)
         {
             var path = Application.persistentDataPath + $"/{fileName}.json";
+            var json = File.ReadAllText(path);
+            return JsonUtility.FromJson<T>(json);
+        }
 
-            if(File.Exists(path))
+        private static void TryCreate(string fileName)
+        {
+            var path = Application.persistentDataPath + $"/{fileName}.json";
+            if (!File.Exists(path))
             {
-                var json = File.ReadAllText(path);
+                using var fileStream = File.Create(path);
+                AddText(fileStream, "{}");
+            }
+        }
 
-                // if (json == "")
-                // {
-                //     
-                // }
-                
-                return JsonUtility.FromJson<T>(json);
-            }
-            else
-            {
-                File.Create(path);
-                return JsonUtility.FromJson<T>("{}");
-            }
+        private static Task AddText(FileStream fs, string value)
+        {
+            byte[] info = new UTF8Encoding(true).GetBytes(value);
+            fs.Write(info, 0, info.Length);
+            return Task.CompletedTask;
         }
 
         private static void SaveData(string fileName, string data)
         {
             var path = Application.persistentDataPath + $"/{fileName}.json";
-            if(!File.Exists(path)) File.Create(path);
+            if (!File.Exists(path)) File.Create(path);
             File.WriteAllText(Application.persistentDataPath + $"/{fileName}.json", data);
         }
     }

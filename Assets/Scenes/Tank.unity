@@ -1447,6 +1447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelArt
       objectReference: {fileID: 0}
+    - target: {fileID: 171356, guid: 1cd1bdb2203012a40ab12a0d2fd7aa88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 488946, guid: 1cd1bdb2203012a40ab12a0d2fd7aa88, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1698,7 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9aa07ab3044e5c9fb0b7c4a176b546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numRoundToWin: 1
+  _numRoundToWin: 2
   _startDelay: 3
   _endDelay: 3
   _spawnersManager: {fileID: 2036845452}
