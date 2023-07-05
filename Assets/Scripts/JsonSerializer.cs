@@ -27,16 +27,31 @@ namespace TankTutorial.Scripts
 
         private static T Deserialize<T>(string fileName)
         {
-            var path = Application.streamingAssetsPath + $"/{fileName}.json";
+            var path = Application.persistentDataPath + $"/{fileName}.json";
 
-            var json = File.ReadAllText(path);
+            if(File.Exists(path))
+            {
+                var json = File.ReadAllText(path);
 
-            return JsonUtility.FromJson<T>(json);
+                // if (json == "")
+                // {
+                //     
+                // }
+                
+                return JsonUtility.FromJson<T>(json);
+            }
+            else
+            {
+                File.Create(path);
+                return JsonUtility.FromJson<T>("{}");
+            }
         }
 
         private static void SaveData(string fileName, string data)
         {
-            File.WriteAllText(Application.streamingAssetsPath + $"/{fileName}.json", data);
+            var path = Application.persistentDataPath + $"/{fileName}.json";
+            if(!File.Exists(path)) File.Create(path);
+            File.WriteAllText(Application.persistentDataPath + $"/{fileName}.json", data);
         }
     }
 }
