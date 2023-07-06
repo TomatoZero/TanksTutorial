@@ -1,47 +1,49 @@
-using System;
 using TankTutorial.Scripts.Player;
 using UnityEngine;
 
-public class SaveController : MonoBehaviour
+namespace TankTutorial.Scripts
 {
-    [SerializeField] private HealthController _healthController;
-    [SerializeField] private Transform _playerTransform;
-
-    [SerializeField] private Rigidbody _rigidbody;
-    // [SerializeField] private TankManager _tankManager;
-
-    private void Awake()
+    public class SaveController : MonoBehaviour
     {
-        LoadDataEventHandler();
-        Debug.Log(Application.persistentDataPath);
-    }
+        [SerializeField] private HealthController _healthController;
+        [SerializeField] private Transform _playerTransform;
 
-    public void SaveDataEventHandler()
-    {
-        PlayerPrefs.SetInt("Health", _healthController.CurrentHp);
-        
-        var position = _playerTransform.position;
-        PlayerPrefs.SetFloat("XPos", position.x);
-        PlayerPrefs.SetFloat("YPos", position.y);
-        PlayerPrefs.SetFloat("ZPos", position.z);
-        PlayerPrefs.Save();
-    }
+        [SerializeField] private Rigidbody _rigidbody;
+        // [SerializeField] private TankManager _tankManager;
 
-    public void LoadDataEventHandler()
-    {
-        _healthController.SetCurrentHp(PlayerPrefs.GetInt("Health", 50));
+        private void Awake()
+        {
+            LoadDataEventHandler();
+            Debug.Log(Application.persistentDataPath);
+        }
 
-        var position = new Vector3(PlayerPrefs.GetFloat("XPos"), PlayerPrefs.GetFloat("YPos"),
-            PlayerPrefs.GetFloat("ZPos"));
+        public void SaveDataEventHandler()
+        {
+            PlayerPrefs.SetInt("Health", _healthController.CurrentHp);
 
-        _rigidbody.position = position;
-    }
+            var position = _playerTransform.position;
+            PlayerPrefs.SetFloat("XPos", position.x);
+            PlayerPrefs.SetFloat("YPos", position.y);
+            PlayerPrefs.SetFloat("ZPos", position.z);
+            PlayerPrefs.Save();
+        }
 
-    public void Reset()
-    {
-        PlayerPrefs.DeleteKey("Health");
-        PlayerPrefs.DeleteKey("XPos");
-        PlayerPrefs.DeleteKey("YPos");
-        PlayerPrefs.DeleteKey("ZPos");
+        public void LoadDataEventHandler()
+        {
+            _healthController.SetCurrentHp(PlayerPrefs.GetInt("Health", 50));
+
+            var position = new Vector3(PlayerPrefs.GetFloat("XPos"), PlayerPrefs.GetFloat("YPos"),
+                PlayerPrefs.GetFloat("ZPos"));
+
+            _rigidbody.position = position;
+        }
+
+        public void Reset()
+        {
+            PlayerPrefs.DeleteKey("Health");
+            PlayerPrefs.DeleteKey("XPos");
+            PlayerPrefs.DeleteKey("YPos");
+            PlayerPrefs.DeleteKey("ZPos");
+        }
     }
 }

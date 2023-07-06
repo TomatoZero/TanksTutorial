@@ -1,15 +1,18 @@
 using TMPro;
 using UnityEngine;
 
-public class BoxScript : MonoBehaviour
+namespace TankTutorial.Scripts.TaskScripts
 {
-    [SerializeField] private TMP_Text _countPassThrough;
-
-    private int _count;
-
-    private void OnTriggerExit(Collider other)
+    public class BoxScript : MonoBehaviour
     {
-        _count++;
-        _countPassThrough.text = $"Pass Through {_count}";
+        [SerializeField] private TMP_Text _countPassThrough;
+
+        private int _count;
+
+        private void OnTriggerExit(Collider other)
+        {
+            _count++;
+            _countPassThrough.text = $"Pass Through {_count}";
+        }
     }
 }

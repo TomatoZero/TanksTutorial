@@ -9,7 +9,7 @@ namespace TankTutorial.Scripts.Player
 
         private ParticleSystem _explosionParticle;
         private AudioSource _explosionAudio;
-        
+
         private void Start()
         {
             _explosionParticle = Instantiate(_explosionParticlePrefab).GetComponent<ParticleSystem>();
@@ -21,8 +21,8 @@ namespace TankTutorial.Scripts.Player
         {
             foreach (var particle in _dustParticles) particle.Play();
         }
-        
-        private void OnDisable ()
+
+        private void OnDisable()
         {
             foreach (var particle in _dustParticles) particle.Stop();
         }
@@ -31,9 +31,9 @@ namespace TankTutorial.Scripts.Player
         {
             _explosionParticle.transform.position = transform.position;
             _explosionParticle.gameObject.SetActive(true);
-            
+
             _explosionParticle.Play();
-            
+
             _explosionAudio.Play();
         }
     }

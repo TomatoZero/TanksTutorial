@@ -1,20 +1,22 @@
-using System;
 using UnityEngine;
 
-public class UIDirectionControll : MonoBehaviour
+namespace TankTutorial.Scripts
 {
-    [SerializeField] private bool _useRelativeRotation = true;
-
-    private Quaternion _relativeRotation;
-
-    private void Start()
+    public class UIDirectionControll : MonoBehaviour
     {
-        _relativeRotation = transform.parent.rotation;
-    }
+        [SerializeField] private bool _useRelativeRotation = true;
 
-    private void Update()
-    {
-        if (_useRelativeRotation)
-            transform.rotation = _relativeRotation;
+        private Quaternion _relativeRotation;
+
+        private void Start()
+        {
+            _relativeRotation = transform.parent.rotation;
+        }
+
+        private void Update()
+        {
+            if (_useRelativeRotation)
+                transform.rotation = _relativeRotation;
+        }
     }
 }

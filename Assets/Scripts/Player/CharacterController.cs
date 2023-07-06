@@ -14,8 +14,8 @@ namespace TankTutorial.Scripts.Player
                 _particleSystems[i].Play();
             }
         }
-        
-        private void OnDisable ()
+
+        private void OnDisable()
         {
             foreach (var particle in _particleSystems)
             {

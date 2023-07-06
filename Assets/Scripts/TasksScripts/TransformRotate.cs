@@ -1,38 +1,38 @@
 using UnityEngine;
 
-public class TransformRotate : MonoBehaviour
+namespace TankTutorial.Scripts.TaskScripts
 {
-    [SerializeField] private Transform _transform;
-    [Space]
-    [SerializeField] private float _rotationSpeed = 45;
-    [SerializeField] private Vector3 _rotation;
-    [Space]
-    [SerializeField] private Color _color;
-    [SerializeField] private bool _isQuaternion;
-
-    private Vector3 _currentEulerAngeles; 
-    
-    private void Start()
+    public class TransformRotate : MonoBehaviour
     {
-        var renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
-        foreach (var mesh in renderers) mesh.material.color = _color;
-    }
+        [SerializeField] private Transform _transform;
+        [Space] [SerializeField] private float _rotationSpeed = 45;
+        [SerializeField] private Vector3 _rotation;
+        [Space] [SerializeField] private Color _color;
+        [SerializeField] private bool _isQuaternion;
 
-    private void FixedUpdate()
-    {
-        _rotation.Normalize();
-        
-        if (_isQuaternion)
+        private Vector3 _currentEulerAngeles;
+
+        private void Start()
         {
-            var target = Quaternion.Euler(_rotation * (_rotationSpeed * Time.fixedDeltaTime));
-            transform.rotation *= target;
+            var renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
+            foreach (var mesh in renderers) mesh.material.color = _color;
         }
-        else
+
+        private void FixedUpdate()
         {
-            _currentEulerAngeles += _rotation * (Time.fixedDeltaTime * _rotationSpeed);
-            _transform.eulerAngles = _currentEulerAngeles;
-            // _transform.Rotate(_currentEulerAngeles);
+            _rotation.Normalize();
+
+            if (_isQuaternion)
+            {
+                var target = Quaternion.Euler(_rotation * (_rotationSpeed * Time.fixedDeltaTime));
+                transform.rotation *= target;
+                // _transform.Rotate(_rotation, Space.World);
+            }
+            else
+            {
+                _currentEulerAngeles += _rotation * (Time.fixedDeltaTime * _rotationSpeed);
+                _transform.eulerAngles = _currentEulerAngeles;
+            }
         }
-        
     }
 }

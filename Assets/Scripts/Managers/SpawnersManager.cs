@@ -8,11 +8,11 @@ namespace TankTutorial.Managers
     {
         [SerializeField] private List<TankManager> _tanks;
         [SerializeField] private GameObject _tankPrefab;
-        
+
         public event Action ResetEvent;
         public event Action EnableEvent;
         public event Action DisableEvent;
-        
+
         public void SpawnAllTanks()
         {
             for (int i = 0; i < _tanks.Count; i++)
@@ -21,7 +21,7 @@ namespace TankTutorial.Managers
                     Instantiate(_tankPrefab, _tanks[i].SpawnPoint.position, _tanks[i].SpawnPoint.rotation);
                 _tanks[i].PlayerName = $"{i + 1}";
                 _tanks[i].Setup();
-                
+
                 ResetEvent += _tanks[i].Reset;
                 EnableEvent += _tanks[i].EnableControl;
                 DisableEvent += _tanks[i].DisableControl;

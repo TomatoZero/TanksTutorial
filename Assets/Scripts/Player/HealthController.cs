@@ -49,8 +49,8 @@ namespace TankTutorial.Scripts.Player
 
         public void SetCurrentHp(int hp)
         {
-            if(hp <= 0) return;
-            
+            if (hp <= 0) return;
+
             _currentHp = hp;
             _setCurrentHpEvent.Invoke(_currentHp);
         }

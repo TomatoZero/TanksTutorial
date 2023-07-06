@@ -9,8 +9,7 @@ namespace TankTutorial.Scripts.Player
         [SerializeField] private AudioClip _engineIdle;
         [SerializeField] private AudioClip _engineDriving;
         [SerializeField] private float _pitchRange;
-        [Space]
-        [SerializeField] private AudioSource _effectAudio;
+        [Space] [SerializeField] private AudioSource _effectAudio;
         [SerializeField] private AudioClip _charginClip;
         [SerializeField] private AudioClip _fireClip;
 
@@ -27,14 +26,14 @@ namespace TankTutorial.Scripts.Player
             _moveDirection = context.ReadValue<Vector2>();
             var _horizontal = _moveDirection.x;
             var _vertical = _moveDirection.y;
-            
-            if (Mathf.Abs (_vertical) < 0.1f && Mathf.Abs (_horizontal) < 0.1f)
+
+            if (Mathf.Abs(_vertical) < 0.1f && Mathf.Abs(_horizontal) < 0.1f)
             {
                 if (_movementAudio.clip == _engineDriving)
                 {
                     _movementAudio.clip = _engineIdle;
-                    _movementAudio.pitch = Random.Range (_originalPitch - _pitchRange, _originalPitch + _pitchRange);
-                    _movementAudio.Play ();
+                    _movementAudio.pitch = Random.Range(_originalPitch - _pitchRange, _originalPitch + _pitchRange);
+                    _movementAudio.Play();
                 }
             }
             else
@@ -50,7 +49,7 @@ namespace TankTutorial.Scripts.Player
 
         public void ShootEventHandler(InputAction.CallbackContext context)
         {
-            if(context.started)
+            if (context.started)
             {
                 _effectAudio.clip = _charginClip;
                 _effectAudio.Play();
@@ -60,7 +59,7 @@ namespace TankTutorial.Scripts.Player
         public void FiredEventHandler()
         {
             _effectAudio.Stop();
-            
+
             _effectAudio.clip = _fireClip;
             _effectAudio.Play();
         }

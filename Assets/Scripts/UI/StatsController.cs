@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TankTutorial.Scripts.UI
@@ -41,7 +40,7 @@ namespace TankTutorial.Scripts.UI
         {
             gameObject.SetActive(value);
         }
-        
+
         private void Add(RoundSum round)
         {
             var roundStats = Instantiate(_statsPrefab, _content).GetComponent<IRoundStats>();

@@ -108,7 +108,7 @@ namespace TankTutorial.Managers
             {
                 message = _gameWinner.ColoredPlayerText + " WINS THE GAME!";
                 var gameSum = GetRoundSum();
-                JsonSerializer.Save("statistic" ,gameSum);
+                JsonSerializer.Save("statistic", gameSum);
             }
 
             return message;
@@ -118,10 +118,10 @@ namespace TankTutorial.Managers
         {
             var firstPlayerWins = _spawnersManager.GetScore(0);
             var secondPlayerWins = _spawnersManager.GetScore(1);
-            
+
             var output = new RoundSum();
             output.InsertValue(firstPlayerWins, secondPlayerWins);
-            
+
             return output;
         }
     }

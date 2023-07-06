@@ -1,33 +1,34 @@
-using System;
 using TMPro;
 using UnityEngine;
 
-public class BouncyBall : MonoBehaviour
+namespace TankTutorial.Scripts.TaskScripts
 {
-    [SerializeField] private Transform _transform;
-    [SerializeField] private Transform _ground;
-    [SerializeField] private TMP_Text _countDetectionOutput;
-    [SerializeField] private TMP_Text _distance;
-
-    private int _countDetection;
-    
-    private void Update()
+    public class BouncyBall : MonoBehaviour
     {
-        var distance = _transform.position - _ground.position;
-        _distance.text = $"Distance: {distance.magnitude}";
-    }
+        [SerializeField] private Transform _transform;
+        [SerializeField] private Transform _ground;
+        [SerializeField] private TMP_Text _countDetectionOutput;
+        [SerializeField] private TMP_Text _distance;
 
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log(other.gameObject.layer);
-        
-        _countDetection++;
-        _countDetectionOutput.text = $"Count Detection: {_countDetection}";
-    }
+        private int _countDetection;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject.layer);
+        private void Update()
+        {
+            var distance = _transform.position - _ground.position;
+            _distance.text = $"Distance: {distance.magnitude}";
+        }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            Debug.Log(other.gameObject.layer);
+
+            _countDetection++;
+            _countDetectionOutput.text = $"Count Detection: {_countDetection}";
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log(other.gameObject.layer);
+        }
     }
 }
