@@ -9,6 +9,7 @@ namespace TankTutorial.Scripts.TaskScripts
         [SerializeField] private Vector3 _rotation;
         [Space] [SerializeField] private Color _color;
         [SerializeField] private bool _isQuaternion;
+        
 
         private Vector3 _currentEulerAngeles;
 
@@ -21,16 +22,16 @@ namespace TankTutorial.Scripts.TaskScripts
         private void FixedUpdate()
         {
             _rotation.Normalize();
-
+            
             if (_isQuaternion)
             {
-                var target = Quaternion.Euler(_rotation * (_rotationSpeed * Time.fixedDeltaTime));
-                transform.rotation *= target;
-                // _transform.Rotate(_rotation, Space.World);
+                // var target = Quaternion.Euler(_rotation * (_rotationSpeed * 6f * Time.fixedDeltaTime));
+                // transform.rotation *= target;
+                _transform.Rotate(_rotation, _rotationSpeed * 6f * Time.fixedDeltaTime);
             }
             else
             {
-                _currentEulerAngeles += _rotation * (Time.fixedDeltaTime * _rotationSpeed);
+                _currentEulerAngeles += _rotation * (Time.fixedDeltaTime * _rotationSpeed * 6f);
                 _transform.eulerAngles = _currentEulerAngeles;
             }
         }
