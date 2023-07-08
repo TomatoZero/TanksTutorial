@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TankTutorial.Scripts.UI
 {
@@ -7,9 +9,16 @@ namespace TankTutorial.Scripts.UI
         [SerializeField] private GameObject _statsPrefab;
         [SerializeField] private Transform _content;
 
+        public UnityEvent _unityEvent;
+        
         public delegate void DestroyChildren();
-
-        public event DestroyChildren destroyChildrenEvent;
+        private event DestroyChildren destroyChildrenEvent;
+        
+        public event DestroyChildren Destroy
+        {
+            add => destroyChildrenEvent += value;
+            remove => destroyChildrenEvent += value;
+        }
 
         public Statistic Stats => _stats;
 

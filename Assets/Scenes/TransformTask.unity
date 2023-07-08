@@ -1101,7 +1101,7 @@ PrefabInstance:
     - target: {fileID: 1196324584986320791, guid: 9019a1aa1f8fe474abee87b079d9de1d,
         type: 3}
       propertyPath: _rotation.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1196324584986320791, guid: 9019a1aa1f8fe474abee87b079d9de1d,
         type: 3}
