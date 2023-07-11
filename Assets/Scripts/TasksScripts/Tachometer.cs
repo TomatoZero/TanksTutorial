@@ -10,10 +10,6 @@ namespace TankTutorial.Scripts.TaskScripts
         [SerializeField] private Transform _objectTransform;
 
         private Quaternion _prevRotation;
-        private float _revolutions;
-        private float _totalRotationAngle = 0f;
-
-        private Vector3 _prevEuger;
         private double _gearRPM;
 
         private void Update()

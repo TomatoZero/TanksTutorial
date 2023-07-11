@@ -9,8 +9,7 @@ namespace TankTutorial.Scripts.TaskScripts
         [SerializeField] private Vector3 _rotation;
         [Space] [SerializeField] private Color _color;
         [SerializeField] private bool _isQuaternion;
-
-
+        
         private Vector3 _currentEulerAngeles;
         private Vector3 _rotationAngles;
 

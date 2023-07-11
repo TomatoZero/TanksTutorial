@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
 
         private float _rateOverTime;
         private List<float> _rateOverTimeChild;
-        
+
         private ParticleSystem.MainModule _main;
         private List<ParticleSystem.MainModule> _mainChild;
 
@@ -21,14 +20,14 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
 
             _mainChild = new List<ParticleSystem.MainModule>();
             foreach (var system in _child) _mainChild.Add(system.main);
-            
+
             var emission = _particle.emission;
             _rateOverTime = emission.rateOverTimeMultiplier;
             _rateOverTimeChild = new List<float>();
 
             foreach (var system in _child)
             {
-                _rateOverTimeChild.Add(system.emission.rateOverTimeMultiplier); 
+                _rateOverTimeChild.Add(system.emission.rateOverTimeMultiplier);
             }
         }
 
@@ -36,7 +35,7 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
         {
             gameObject.SetActive(true);
         }
-        
+
         public void TurnOff()
         {
             gameObject.SetActive(false);
@@ -46,7 +45,7 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
         {
             _particle.Play();
         }
-        
+
         public void TurnOffParticle()
         {
             _particle.Stop();
@@ -58,7 +57,7 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
             var emission = _particle.emission;
             emission.rateOverTimeMultiplier = _rateOverTime * n;
 
-            for(int i = 0; i < _child.Count; i++)
+            for (int i = 0; i < _child.Count; i++)
             {
                 var emissionChild = _child[i].emission;
                 emissionChild.rateOverTimeMultiplier = _rateOverTimeChild[i] * n;
@@ -68,7 +67,7 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
         public void SetPlayBackSpeed(float speed)
         {
             _main.simulationSpeed = speed;
-           
+
             foreach (var mainModule in _mainChild)
             {
                 var module = mainModule;
