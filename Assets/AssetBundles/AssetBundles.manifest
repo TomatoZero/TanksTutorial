@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 421060740
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: weaponsassetbundle.weapon
+      Dependencies: {}

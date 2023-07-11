@@ -1,0 +1,46 @@
+ManifestFileVersion: 0
+CRC: 4267535611
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8b3afa814321d8b869b8de58097d0224
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6cfe717a1383f80b4d973b4014a36850
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a2344f7d51214fd1af97d5a42501abcc, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Swords/FireSword.prefab
+- Assets/Prefabs/Swords/FrostSword.prefab
+Dependencies: []

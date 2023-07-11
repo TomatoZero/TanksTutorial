@@ -1,7 +1,9 @@
 fileFormatVersion: 2
 guid: 5da204f742c5f6c46ae12695865b0b33
+labels:
+- Weapon
 PrefabImporter:
   externalObjects: {}
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: weaponsassetbundle
+  assetBundleVariant: weapon
