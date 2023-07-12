@@ -1,7 +1,9 @@
 fileFormatVersion: 2
 guid: cae9caabe946539438712dacdf3aa1a3
+labels:
+- Effect
 PrefabImporter:
   externalObjects: {}
   userData: 
-  assetBundleName: 
+  assetBundleName: particles
   assetBundleVariant: 

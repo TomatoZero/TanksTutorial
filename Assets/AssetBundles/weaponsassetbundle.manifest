@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3364220849
+CRC: 1013143963
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4ed5b8f31b3bc4039e2657750905917e
+    Hash: be80ea5014dd1e081770f038cad0d7ec
   TypeTreeHash:
     serializedVersion: 2
     Hash: 6cfe717a1383f80b4d973b4014a36850
@@ -41,6 +41,9 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Prefabs/Particles/FrostSword.prefab
+- Assets/Prefabs/Particles/FireSword.prefab
 - Assets/Prefabs/Swords/FireSword.prefab
 - Assets/Prefabs/Swords/FrostSword.prefab
-Dependencies: []
+Dependencies:
+- D:/User/source/Unity/TanksTutorial/Assets/AssetBundles/particles

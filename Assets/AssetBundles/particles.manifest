@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 3081178307
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7546fb4ae86cb09beae67b9f3c97d7c4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ece8b7cee0da0b6357ed55ba76a09216
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Particles/Frost.prefab
+- Assets/Prefabs/Particles/Fire.prefab
+Dependencies:
+- D:/User/source/Unity/TanksTutorial/Assets/AssetBundles/material/particlematerial

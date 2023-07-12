@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 2861958010
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f648043c289ef0b4a03b23b5fa159fe2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 82515b3694a1e5beae009c48c1198c34
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Resources/Low Poly Fire/Materials/FrostMaterial.mat
+- Assets/Resources/Low Poly Fire/Materials/Smoke.mat
+- Assets/Resources/Low Poly Fire/Materials/FireMaterial.mat
+- Assets/Resources/Low Poly Fire/Materials/Snowflake.mat
+Dependencies: []
