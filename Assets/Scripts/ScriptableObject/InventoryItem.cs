@@ -6,7 +6,7 @@ namespace TankTutorial.Scripts.ScriptableObject
     public class InventoryItem : UnityEngine.ScriptableObject
     {
         [SerializeField] private string _itemName = "New Item";
-        [SerializeField] private Texture2D _itemIcon = null;
+        [SerializeField] private Sprite _itemIcon = null;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private bool _isUnique = false;
         [SerializeField] private bool _isIndestructible = false;
@@ -16,7 +16,7 @@ namespace TankTutorial.Scripts.ScriptableObject
         [SerializeField] private bool _destroyOnUse = false;
 
         public string ItemName => _itemName;
-        public Texture2D ItemIcon => _itemIcon;
+        public Sprite ItemIcon => _itemIcon;
         public GameObject Prefab => _prefab;
         public bool IsUnique => _isUnique;
         public bool IsIndestructible => _isIndestructible;
