@@ -19,15 +19,21 @@ public class InventoryItemController : MonoBehaviour
         ReloadData();
     }
 
+    [ContextMenu("Reload Data")]
     public void ReloadData()
     {
+        Debug.Log($"_itemIco {_itemIco}");
+        
         _itemIco.sprite = _item.ItemIcon;
+        
+        Debug.Log($"_itemIco {_itemIco}");
+        
         _count.text = _currentCount.ToString();
     }
 
     private void DisableCountIfNeed()
     {
-        if (!_item.IsStackable)
-            _count.enabled = false;
+        // if (!_item.IsStackable)
+        //     _count.enabled = false;
     }
 }
