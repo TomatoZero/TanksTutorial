@@ -1,0 +1,19 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace TankTutorial.Scripts.ScriptableObject
+{
+    [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObject/InventoryItemList", order = 1)]
+    public class InventoryItemList : UnityEngine.ScriptableObject
+    {
+        [SerializeField] private List<InventoryItem> _inventoryItems;
+
+        public List<InventoryItem> InventoryItems => _inventoryItems;
+
+        public bool TryAddItem(InventoryItem _item)
+        {
+            _inventoryItems.Add(_item);
+            return true;
+        }
+    }
+}
