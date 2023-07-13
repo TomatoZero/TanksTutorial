@@ -13,8 +13,14 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
         {
             var weapon = Instantiate(prefab, transform).GetComponent<Weapon>();
             _weapons.Add(weapon);
+
+            _currentActive = _weapons.Count - 1;
+
+            Deactivate();
+
+            _weapons[_currentActive].TurnOn();
         }
-        
+
         public void ChangeSelectedWeaponEventHandler(int id)
         {
             TurnOff();
@@ -26,13 +32,12 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
         {
             _weapons[_currentActive].SetPlayBackSpeed(speed);
         }
-        
+
         public void SetRateOverTimeMultiplierEventHandler(float speed)
         {
             _weapons[_currentActive].SetRateOverTimeMultiplier(speed);
         }
 
-        
         public void TurnOnParticle()
         {
             _weapons[_currentActive].TurnOnParticle();
@@ -43,12 +48,20 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
             _weapons[_currentActive].TurnOffParticle();
         }
 
+        private void Deactivate()
+        {
+            foreach (var weapon in _weapons)
+            {
+                weapon.TurnOff();
+            }
+        }
+
         private void TryChangeIndex(int id)
         {
-            if(CheckIndex(id))
+            if (CheckIndex(id))
                 _currentActive = id;
         }
-        
+
         private bool CheckIndex(int id)
         {
             return id >= 0 && id <= _weapons.Count;
