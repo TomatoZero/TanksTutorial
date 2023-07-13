@@ -26,4 +26,4 @@ Assets:
 - Assets/Prefabs/Particles/Frost.prefab
 - Assets/Prefabs/Particles/Fire.prefab
 Dependencies:
-- D:/User/source/Unity/TanksTutorial/Assets/AssetBundles/material/particlematerial
+- D:/User/source/Unity/TanksTutorial/Assets/StreamingAssets/AssetBundles/material/particlematerial
