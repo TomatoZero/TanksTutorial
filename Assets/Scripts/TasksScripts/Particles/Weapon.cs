@@ -41,11 +41,13 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
             gameObject.SetActive(false);
         }
 
+        [ContextMenu("Turn On Particles")]
         public void TurnOnParticle()
         {
             _particle.Play();
         }
 
+        [ContextMenu("Turn Off Particles")]
         public void TurnOffParticle()
         {
             _particle.Stop();

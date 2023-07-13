@@ -9,6 +9,12 @@ namespace TankTutorial.Scripts.TaskScripts.Particles
 
         private int _currentActive;
 
+        public void AddWeapon(GameObject prefab)
+        {
+            var weapon = Instantiate(prefab, transform).GetComponent<Weapon>();
+            _weapons.Add(weapon);
+        }
+        
         public void ChangeSelectedWeaponEventHandler(int id)
         {
             TurnOff();
