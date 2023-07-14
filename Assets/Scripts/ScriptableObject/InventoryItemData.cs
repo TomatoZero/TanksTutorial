@@ -3,7 +3,7 @@ using UnityEngine;
 namespace TankTutorial.Scripts.ScriptableObject
 {
     [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObject/InventoryItem", order = 0)]
-    public class InventoryItem : UnityEngine.ScriptableObject
+    public class InventoryItemData : UnityEngine.ScriptableObject
     {
         [SerializeField] private string _itemName = "New Item";
         [SerializeField] private Sprite _itemIcon = null;

@@ -10,9 +10,9 @@ namespace TankTutorial.Scripts.ScriptableObject
 
         public List<InventoryItem> InventoryItems => _inventoryItems;
 
-        public bool TryAddItem(InventoryItem _item)
+        public bool TryAddItem(InventoryItem itemData)
         {
-            _inventoryItems.Add(_item);
+            _inventoryItems.Add(itemData);
             return true;
         }
     }

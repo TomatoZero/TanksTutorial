@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TankTutorial.Scripts.ScriptableObject;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace TankTutorial.Scripts.UI.Inventory
         [SerializeField] private Transform _content;
         [SerializeField] private InventoryItemList _inventory;
         [SerializeField] private GameObject _itemPrefab;
-        
+
         private List<InventoryItemController> _items;
 
         private void Start()
@@ -39,7 +38,7 @@ namespace TankTutorial.Scripts.UI.Inventory
         {
             return _inventory.TryAddItem(item);
         }
-        
+
         private void CreateListIfNeed()
         {
             if (_items == null) _items = new List<InventoryItemController>();

@@ -1,39 +1,38 @@
-using TankTutorial.Scripts.ScriptableObject;
+using TankTutorial.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryItemController : MonoBehaviour
+
+namespace TankTutorial.Scripts.UI.Inventory
 {
-    [SerializeField] private Image _itemIco;
-    [SerializeField] private TMP_Text _count;
-    
-    private InventoryItem _item;
-    private int _currentCount;
-    
-    public void SetItemData(InventoryItem item)
+    public class InventoryItemController : MonoBehaviour
     {
-        _item = item;
-        DisableCountIfNeed();
-        _currentCount = _item.StackMaxCount;
-        ReloadData();
-    }
+        [SerializeField] private Image _itemIco;
+        [SerializeField] private TMP_Text _count;
 
-    [ContextMenu("Reload Data")]
-    public void ReloadData()
-    {
-        Debug.Log($"_itemIco {_itemIco}");
-        
-        _itemIco.sprite = _item.ItemIcon;
-        
-        Debug.Log($"_itemIco {_itemIco}");
-        
-        _count.text = _currentCount.ToString();
-    }
+        private InventoryItem _itemData;
+        private int _currentCount;
 
-    private void DisableCountIfNeed()
-    {
-        // if (!_item.IsStackable)
-        //     _count.enabled = false;
+        public void SetItemData(InventoryItem itemData)
+        {
+            _itemData = itemData;
+            DisableCountIfNeed();
+            itemData.CheckData();
+            _currentCount = itemData.CurrentCount;
+            ReloadData();
+        }
+
+        [ContextMenu("Reload Data")]
+        public void ReloadData()
+        {
+            _itemIco.sprite = _itemData.ItemData.ItemIcon;
+        }
+
+        private void DisableCountIfNeed()
+        {
+            if (!_itemData.ItemData.IsStackable)
+                _count.enabled = false;
+        }
     }
 }
