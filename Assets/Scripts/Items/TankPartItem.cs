@@ -2,8 +2,7 @@ using TankTutorial.Scripts.ScriptableObject;
 
 namespace TankTutorial.Scripts.Items
 {
-    public class TankPartItem<T> : InventoryItem<T>
-        where T :TankPartData
+    public class TankPartItem : InventoryItem
     {
         private float _currentStrength;
 
@@ -12,19 +11,14 @@ namespace TankTutorial.Scripts.Items
             get => _currentStrength;
             set
             {
-                if (value >= 0 && value <= _itemData.MaxStrength)
+                if (value >= 0 && value <= ((TankPartData)_itemData).MaxStrength)
                     _currentStrength = value;
             }
         }
 
-        public static TankPartItem<TankPartData> GetItem()
+        public override string ToString()
         {
-            return new TankPartItem<TankPartData>();
-        }
-        
-        public static TankPartItem<TReturn> GetItem<TReturn>() where TReturn : TankPartData
-        {
-            return new TankPartItem<TReturn>();
+            return $"{base.ToString()}\nStrength: {_currentStrength}";
         }
     }
 }

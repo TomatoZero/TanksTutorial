@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace TankTutorial.Scripts.Items
 {
-    public class BulletItem<T> : InventoryItem<T>
-        where T :BulletData
+    public class BulletItem: InventoryItem
     {
         private int _countInStack;
 
@@ -13,8 +12,13 @@ namespace TankTutorial.Scripts.Items
             get => _countInStack;
             set
             {
-                if(value >= 0 && value <= _itemData.MaxCountInStack) _countInStack = value;
+                if(value >= 0 && value <= ((BulletData)_itemData).MaxCountInStack) _countInStack = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}\nIn Stack: {_countInStack}";
         }
     }
 }

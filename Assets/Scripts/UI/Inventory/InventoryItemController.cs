@@ -11,10 +11,10 @@ namespace TankTutorial.Scripts.UI.Inventory
         [SerializeField] private Image _itemIco;
         [SerializeField] private TMP_Text _count;
 
-        private InventoryItem<ItemData> _itemData;
+        private InventoryItem _itemData;
         private int _currentCount;
 
-        public void SetItemData(InventoryItem<ItemData> itemData)
+        public void SetItemData(InventoryItem itemData)
         {
             _itemData = itemData;
             DisableCountIfNeed();

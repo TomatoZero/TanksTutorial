@@ -5,15 +5,19 @@ using UnityEngine;
 namespace TankTutorial.Scripts.Items
 {
     [Serializable]
-    public class InventoryItem<T>
-        where T : ItemData
+    public class InventoryItem
     {
-        [SerializeField] protected T _itemData;
+        protected ItemData _itemData;
 
-        public T ItemData
+        public ItemData ItemData
         {
             get => _itemData;
             set => _itemData = value;
+        }
+
+        public override string ToString()
+        {
+            return $"Item Name: {_itemData}\nDescription: {_itemData.Description}";
         }
     }
 
@@ -22,8 +26,26 @@ namespace TankTutorial.Scripts.Items
         public T ItemData { get; set; }
     }
 
-    public abstract class Item
+    public abstract class Item<T>
     {
-        public abstract T GetItem<T>() where T: InventoryItem<ItemData>;
+        protected T _itemData;
+
+        public T ItemData
+        {
+            get => _itemData;
+            set => _itemData = value;
+        }
+    }
+
+    public abstract class TankPartItem2<T> : Item<TankPartData>
+        where T : TankPartData
+    {
+        
+    }
+    
+    public abstract class TurretItem2<T>: Item<TankPartData>
+        where T : TurretData
+    {
+        
     }
 }

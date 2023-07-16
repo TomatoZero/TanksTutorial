@@ -2,8 +2,7 @@ using TankTutorial.Scripts.ScriptableObject;
 
 namespace TankTutorial.Scripts.Items
 {
-    public class TrackItem<T> : InventoryItem<T>
-        where T : TrackData
+    public class TrackItem: TankPartItem
     {
         private float _distanceDriven;
 
@@ -12,8 +11,13 @@ namespace TankTutorial.Scripts.Items
             get => _distanceDriven;
             set
             {
-                if (value >= 0 && value <= _itemData.MaxDistanceDriven) _distanceDriven = value;
+                if (value >= 0 && value <= ((TrackData)_itemData).MaxDistanceDriven) _distanceDriven = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}\nDistance Driven: {_distanceDriven}";
         }
     }
 }

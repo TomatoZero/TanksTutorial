@@ -10,16 +10,12 @@ namespace TankTutorial.Scripts.UI.Inventory
         [SerializeField] private Transform _content;
         [SerializeField] private InventoryItemList _inventory;
         [SerializeField] private GameObject _itemPrefab;
-
-        [SerializeField] private ItemData _bullet;
-
+        
         private List<InventoryItemController> _items;
 
 
         private void Start()
         {
-            Debug.Log($"{((BulletData)_bullet).PlusTimeBeforeExplosion}");
-            
             CreateListIfNeed();
             foreach (var item in _inventory.InventoryItems)
             {
@@ -29,7 +25,7 @@ namespace TankTutorial.Scripts.UI.Inventory
             }
         }
 
-        public void AddIfPossible(InventoryItem<ItemData> item)
+        public void AddIfPossible(InventoryItem item)
         {
             if (CheckPossibilityToAdd(item))
             {
@@ -40,7 +36,7 @@ namespace TankTutorial.Scripts.UI.Inventory
             }
         }
 
-        private bool CheckPossibilityToAdd(InventoryItem<ItemData> item)
+        private bool CheckPossibilityToAdd(InventoryItem item)
         {
             return _inventory.TryAddItem(item);
         }
@@ -56,7 +52,7 @@ namespace TankTutorial.Scripts.UI.Inventory
             return instant.GetComponent<InventoryItemController>();
         }
 
-        private void SetUpInstant(InventoryItemController instant, InventoryItem<ItemData> item)
+        private void SetUpInstant(InventoryItemController instant, InventoryItem item)
         {
             instant.SetItemData(item);
         }

@@ -2,8 +2,7 @@ using TankTutorial.Scripts.ScriptableObject;
 
 namespace TankTutorial.Scripts.Items
 {
-    public class TurretItem<T> : InventoryItem<T>
-        where T : TurretData
+    public class TurretItem: InventoryItem
     {
         private int _numbShots;
 
@@ -12,8 +11,13 @@ namespace TankTutorial.Scripts.Items
             get => _numbShots;
             set
             {
-                if(value >= 0 && value <= _itemData.MaxNumbShots) _numbShots = value;
+                if(value >= 0 && value <= ((TurretData)_itemData).MaxNumbShots) _numbShots = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}\nShots left: {((TurretData)_itemData).MaxNumbShots - _numbShots}";
         }
     }
 }
