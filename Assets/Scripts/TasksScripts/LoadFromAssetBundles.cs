@@ -1,7 +1,11 @@
 using System;
+using System.Collections;
 using System.IO;
 using TankTutorial.Scripts.TaskScripts.Particles;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
+using Object = UnityEngine.Object;
 
 namespace TankTutorial.Scripts.TaskScripts
 {
@@ -20,16 +24,49 @@ namespace TankTutorial.Scripts.TaskScripts
             _weaponAssetBundleFolderPath = Path.Combine(Application.streamingAssetsPath, "AssetBundles");
         }
 
-        void Start() {
-            LoadDependencies("weaponsassetbundle");
-            var weaponAb = AssetBundle.LoadFromFile(_weaponAssetBundlePath); 
+        void Start()
+        {
+            // var weaponAb = LoadFromDisk();
+            //
+            // if (weaponAb == null) {
+            //     Debug.Log("Failed to load AssetBundle!");
+            //     return;
+            // }
+            // CreateInstant(weaponAb, "FireSword");
+            // CreateInstant(weaponAb, "FrostSword");
             
-            if (weaponAb == null) {
-                Debug.Log("Failed to load AssetBundle!");
-                return;
+            StopCoroutine(GetAssetBundle());
+        }
+
+        private AssetBundle LoadFromDisk()
+        {
+            LoadDependencies("weaponsassetbundle");
+            return AssetBundle.LoadFromFile(_weaponAssetBundlePath);
+        }
+
+        private AssetBundle LoadFromSource()
+        {
+            StopCoroutine(GetAssetBundle());
+            return default;
+        }
+
+        private IEnumerator GetAssetBundle()
+        { 
+            var www = UnityWebRequestAssetBundle.GetAssetBundle(
+                "https://www.dropbox.com/scl/fi/l0gip0r54rlih4tyf8dzs/weaponsassetbundle?rlkey=8fzn562n1wv9rltg32nbi6xau&dl=0");
+            
+            yield return www.SendWebRequest();
+
+            if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+                Debug.Log(www.error);
             }
-            CreateInstant(weaponAb, "FireSword");
-            CreateInstant(weaponAb, "FrostSword");
+            else {
+                AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(www);
+
+                var cube = bundle.LoadAsset("FireSword");
+               
+                CreateInstant(cube.GameObject());
+            }
         }
 
         private AssetBundle LoadDependencies(string dependenciesFor)
@@ -50,6 +87,12 @@ namespace TankTutorial.Scripts.TaskScripts
         {
             var prefab = myLoadedAssetBundle.LoadAsset<GameObject>(fileName);
             _weaponParent.AddWeapon(prefab);
+        }
+
+        private void CreateInstant(GameObject obj)
+        {
+            _weaponParent.AddWeapon(obj);
+
         }
     }
 }

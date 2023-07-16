@@ -1,8 +1,8 @@
-using TankTutorial.Scripts;
+using TankTutorial.Scripts.Items;
+using TankTutorial.Scripts.ScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 namespace TankTutorial.Scripts.UI.Inventory
 {
@@ -11,15 +11,13 @@ namespace TankTutorial.Scripts.UI.Inventory
         [SerializeField] private Image _itemIco;
         [SerializeField] private TMP_Text _count;
 
-        private InventoryItem _itemData;
+        private InventoryItem<ItemData> _itemData;
         private int _currentCount;
 
-        public void SetItemData(InventoryItem itemData)
+        public void SetItemData(InventoryItem<ItemData> itemData)
         {
             _itemData = itemData;
             DisableCountIfNeed();
-            itemData.CheckData();
-            _currentCount = itemData.CurrentCount;
             ReloadData();
         }
 
@@ -31,7 +29,7 @@ namespace TankTutorial.Scripts.UI.Inventory
 
         private void DisableCountIfNeed()
         {
-            if (!_itemData.ItemData.IsStackable)
+            
                 _count.enabled = false;
         }
     }
