@@ -16,22 +16,29 @@ namespace TankTutorial.Scripts.UI.Inventory
         [SerializeField] private TrackData _track;
         
         private InventoryItem _item;
-
-        private void Start()
+        
+        public InventoryItem Item
         {
-            _item = new TrackItem();
-            _item.ItemData = _track;
-            ((TrackItem)_item).DistanceDriven = 2;
-            ((TrackItem)_item).CurrentStrength = 3;
-
-            _button.onClick.AddListener(() => { Debug.Log( _item.ToString());});
+            get => _item;
+            set => _item = value;
         }
-
         
         [ContextMenu("Reload Data")]
         public void ReloadData()
         {
             _itemIco.sprite = _item.ItemData.ItemIcon;
+        }
+        
+        public void SetItemData(InventoryItem itemData)
+        {
+            _item = itemData;
+            DisableCountIfNeed();
+            ReloadData();
+        }
+
+        private void DisableCountIfNeed()
+        {
+            // _briefInfo.enabled = false;
         }
     }
 }

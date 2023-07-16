@@ -4,6 +4,7 @@ using System.IO;
 using TankTutorial.Scripts.TaskScripts.Particles;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 using Object = UnityEngine.Object;
 
@@ -12,7 +13,9 @@ namespace TankTutorial.Scripts.TaskScripts
     public class LoadFromAssetBundles : MonoBehaviour
     {
         [SerializeField] private WeaponsController _weaponParent;
-
+        [SerializeField] private AssetReference _assetReference;
+        
+        
         private string _weaponAssetBundlePath;
         private string _weaponAssetBundleFolderPath;
         private string _assetBundlePath;
@@ -26,16 +29,16 @@ namespace TankTutorial.Scripts.TaskScripts
 
         void Start()
         {
-            // var weaponAb = LoadFromDisk();
-            //
-            // if (weaponAb == null) {
-            //     Debug.Log("Failed to load AssetBundle!");
-            //     return;
-            // }
-            // CreateInstant(weaponAb, "FireSword");
-            // CreateInstant(weaponAb, "FrostSword");
+            var weaponAb = LoadFromDisk();
             
-            StopCoroutine(GetAssetBundle());
+            if (weaponAb == null) {
+                Debug.Log("Failed to load AssetBundle!");
+                return;
+            }
+            CreateInstant(weaponAb, "FireSword");
+            CreateInstant(weaponAb, "FrostSword");
+            
+            // StopCoroutine(GetAssetBundle());
         }
 
         private AssetBundle LoadFromDisk()

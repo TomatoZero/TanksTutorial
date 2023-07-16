@@ -1,5 +1,4 @@
 using TankTutorial.Scripts.Items;
-using TankTutorial.Scripts.ScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,8 +28,7 @@ namespace TankTutorial.Scripts.UI.Inventory
 
         private void DisableCountIfNeed()
         {
-            
-                _count.enabled = false;
+            _count.enabled = false;
         }
     }
 }

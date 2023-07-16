@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TankTutorial.Scripts.Items;
 using TankTutorial.Scripts.ScriptableObject;
@@ -8,51 +9,40 @@ namespace TankTutorial.Scripts.UI.Inventory
     public class InventoryViewController : MonoBehaviour
     {
         [SerializeField] private Transform _content;
-        [SerializeField] private InventoryItemList _inventory;
+        [SerializeField] private ItemConfig _inventory;
         [SerializeField] private GameObject _itemPrefab;
-        
-        private List<InventoryItemController> _items;
 
+        private List<UIItemContainer> _items;
+
+
+        private void OnEnable()
+        {
+            
+        }
 
         private void Start()
         {
             CreateListIfNeed();
-            foreach (var item in _inventory.InventoryItems)
+            foreach (var item in _inventory.Items)
             {
                 var instant = CreateInstant();
                 _items.Add(instant);
-                // SetUpInstant(instant, item);
+                SetUpInstant(instant, new InventoryItem(){ItemData = item});
             }
-        }
-
-        public void AddIfPossible(InventoryItem item)
-        {
-            if (CheckPossibilityToAdd(item))
-            {
-                CreateListIfNeed();
-                var instant = CreateInstant();
-                _items.Add(instant);
-                // SetUpInstant(instant, item);
-            }
-        }
-
-        private bool CheckPossibilityToAdd(InventoryItem item)
-        {
-            return _inventory.TryAddItem(item);
         }
 
         private void CreateListIfNeed()
         {
-            if (_items == null) _items = new List<InventoryItemController>();
+            if (_items == null) _items = new List<UIItemContainer>();
         }
 
-        private InventoryItemController CreateInstant()
+        private UIItemContainer CreateInstant()
         {
             var instant = Instantiate(_itemPrefab, _content);
-            return instant.GetComponent<InventoryItemController>();
+            return instant.GetComponent<UIItemContainer>();
         }
 
-        private void SetUpInstant(InventoryItemController instant, InventoryItem item)
+        private void SetUpInstant(UIItemContainer instant, InventoryItem item)
         {
             instant.SetItemData(item);
         }

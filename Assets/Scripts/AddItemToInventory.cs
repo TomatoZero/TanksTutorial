@@ -15,7 +15,7 @@ public class AddItemToInventory : MonoBehaviour
     {
         // _dropdown.onValueChanged.AddListener(_inventory.Add(new BulletItem()));
         
-        _dropdown.options.Add(new Dropdown.OptionData());
+        // _dropdown.options.Add(new Dropdown.OptionData());
     }
 
     public void AddItem(int id)

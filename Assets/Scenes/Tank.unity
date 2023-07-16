@@ -2211,8 +2211,11 @@ MonoBehaviour:
     _spawnPoint: {fileID: 88167079}
   - _color: {r: 0.121542156, g: 1, b: 0.0141509175, a: 0}
     _spawnPoint: {fileID: 545796253}
-  _tankPrefab: {fileID: 5079438475927203554, guid: 25ba35ee1f824a34f99d367ae6ef771f,
-    type: 3}
+  _tankReference:
+    m_AssetGUID: 25ba35ee1f824a34f99d367ae6ef771f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!1 &2134888160
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,13 @@
-using TankTutorial.Scripts.Items;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace TankTutorial.Scripts.ScriptableObject
 {
     [CreateAssetMenu(fileName = "ItemConfig", menuName = "ScriptableObject/ItemConfig", order = 0)]
     public class ItemConfig : UnityEngine.ScriptableObject
     {
-        [SerializeField] private BulletData[] _bulletConfig;
-        [SerializeField] private TurretData[] _turretsConfig;
-        [SerializeField] private TrackData[] _tracksConfig;
+        [FormerlySerializedAs("_bulletConfig")] [SerializeField] private ItemData[] _items;
+
+        public ItemData[] Items => _items;
     }
 }

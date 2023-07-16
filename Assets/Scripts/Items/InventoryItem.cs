@@ -1,6 +1,5 @@
 using System;
 using TankTutorial.Scripts.ScriptableObject;
-using UnityEngine;
 
 namespace TankTutorial.Scripts.Items
 {
@@ -19,33 +18,5 @@ namespace TankTutorial.Scripts.Items
         {
             return $"Item Name: {_itemData}\nDescription: {_itemData.Description}";
         }
-    }
-
-    public interface IItem<T> where T : ItemData
-    {
-        public T ItemData { get; set; }
-    }
-
-    public abstract class Item<T>
-    {
-        protected T _itemData;
-
-        public T ItemData
-        {
-            get => _itemData;
-            set => _itemData = value;
-        }
-    }
-
-    public abstract class TankPartItem2<T> : Item<TankPartData>
-        where T : TankPartData
-    {
-        
-    }
-    
-    public abstract class TurretItem2<T>: Item<TankPartData>
-        where T : TurretData
-    {
-        
     }
 }

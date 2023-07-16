@@ -26,7 +26,7 @@ namespace TankTutorial.Managers
             _startWait = new WaitForSeconds(_startDelay);
             _endWait = new WaitForSeconds(_endDelay);
 
-            _spawnersManager.SpawnAllTanks();
+            // _spawnersManager.SpawnAllTanks();
 
             StartCoroutine(GameLoop());
         }
