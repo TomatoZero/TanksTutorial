@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace TankTutorial.Scripts.Player
+namespace TankTutorial.TankTutorial.Player
 {
     public class ShootController : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace TankTutorial.Scripts.Player
+namespace TankTutorial.TankTutorial.Player
 {
     [RequireComponent(typeof(Rigidbody))]
     public class MovementController : MonoBehaviour

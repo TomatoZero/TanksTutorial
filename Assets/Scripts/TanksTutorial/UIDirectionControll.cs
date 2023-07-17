@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TankTutorial.Scripts
+namespace TankTutorial.TankTutorial
 {
     public class UIDirectionControll : MonoBehaviour
     {

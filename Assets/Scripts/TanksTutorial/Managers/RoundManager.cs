@@ -3,7 +3,7 @@ using TankTutorial.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TankTutorial.Managers
+namespace TankTutorial.TankTutorial.Managers
 {
     public class RoundManager : MonoBehaviour
     {

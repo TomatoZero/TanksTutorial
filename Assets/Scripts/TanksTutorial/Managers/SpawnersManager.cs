@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace TankTutorial.Managers
+namespace TankTutorial.TankTutorial.Managers
 {
     public class SpawnersManager : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using TankTutorial.Scripts.Items;
 using TankTutorial.Scripts.ScriptableObject;
 using UnityEngine;
 
-namespace TankTutorial.Scripts.UI.Inventory
+namespace TankTutorial.Scripts.UI.InventoryView
 {
     public class InventoryViewController : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace TankTutorial.Scripts
+namespace TankTutorial.TankTutorial
 {
     public class NotifyOnDestroy : MonoBehaviour
     {

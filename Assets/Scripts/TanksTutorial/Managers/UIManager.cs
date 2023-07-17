@@ -2,7 +2,7 @@ using TankTutorial.Scripts.UI;
 using TMPro;
 using UnityEngine;
 
-namespace TankTutorial.Managers
+namespace TankTutorial.TankTutorial.Managers
 {
     public class UIManager : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TankTutorial.Scripts.Player
+namespace TankTutorial.TankTutorial.Player
 {
     public class EffectsController : MonoBehaviour
     {

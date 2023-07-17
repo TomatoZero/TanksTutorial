@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TankTutorial.Scripts
+namespace TankTutorial.TankTutorial
 {
     [Serializable]
     public struct RoundSum

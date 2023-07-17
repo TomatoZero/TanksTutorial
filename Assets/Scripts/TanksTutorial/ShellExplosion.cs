@@ -1,7 +1,7 @@
-using TankTutorial.Scripts.Player;
+using TankTutorial.TankTutorial.Player;
 using UnityEngine;
 
-namespace TankTutorial.Scripts
+namespace TankTutorial.TankTutorial
 {
     public class ShellExplosion : MonoBehaviour
     {

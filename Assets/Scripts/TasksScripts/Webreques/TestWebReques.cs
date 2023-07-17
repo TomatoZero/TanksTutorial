@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TankTutorial.Scripts.UI;
+using TankTutorial.TankTutorial;
 using UnityEngine;
 
 namespace TankTutorial.Scripts.TaskScripts.Webrequest

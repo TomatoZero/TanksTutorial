@@ -1,9 +1,10 @@
 using System;
+using TankTutorial.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-namespace TankTutorial.Scripts.Player
+namespace TankTutorial.TankTutorial.Player
 {
     public class HealthController : MonoBehaviour
     {

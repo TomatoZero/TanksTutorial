@@ -1,9 +1,9 @@
 using System;
-using TankTutorial.Scripts.Player;
+using TankTutorial.TankTutorial.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace TankTutorial.Managers
+namespace TankTutorial.TankTutorial.Managers
 {
     [Serializable]
     public class TankManager

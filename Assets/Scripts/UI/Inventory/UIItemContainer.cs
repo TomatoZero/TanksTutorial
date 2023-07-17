@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TankTutorial.Scripts.UI.Inventory
+namespace TankTutorial.Scripts.UI.InventoryView
 {
     [RequireComponent(typeof(Button))]
     public class UIItemContainer : MonoBehaviour
