@@ -10,10 +10,7 @@ namespace TankTutorial.Scripts.UI.InventoryView
     public class UIItemContainer : MonoBehaviour
     {
         [SerializeField] private Image _itemIco;
-        [SerializeField] private TMP_Text _briefInfo;
         [SerializeField] private Button _button;
-
-        [SerializeField] private TrackData _track;
         
         private InventoryItem _item;
         

@@ -16,6 +16,15 @@ namespace TankTutorial.Scripts.Inventory
             }
         }
 
+        public void SetLength(int lenght)
+        {
+            _itemsLength = lenght;
+            
+            if (_inventoryItems is null)
+                _inventoryItems = new T[lenght];
+            
+        }
+        
         public void Add(T item)
         {
             CreateInventoryIfNeed();
@@ -39,7 +48,7 @@ namespace TankTutorial.Scripts.Inventory
         {
             for (var i = 0; i < _inventoryItems.Length; i++)
             {
-                if (_inventoryItems[i] != null)
+                if (_inventoryItems[i] == null)
                     return i;
             }
             
