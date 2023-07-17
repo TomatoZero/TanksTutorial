@@ -8,7 +8,7 @@ namespace TankTutorial.Managers
     public class RoundManager : MonoBehaviour
     {
         [SerializeField] private int _numRoundToWin = 1;
-        [SerializeField] private float _startDelay = 3;
+        [SerializeField] private float _startDelay = 10;
         [SerializeField] private float _endDelay = 3;
 
         [SerializeField] private SpawnersManager _spawnersManager;
@@ -26,7 +26,8 @@ namespace TankTutorial.Managers
             _startWait = new WaitForSeconds(_startDelay);
             _endWait = new WaitForSeconds(_endDelay);
 
-            // _spawnersManager.SpawnAllTanks();
+            _spawnersManager.Spawn();
+            _spawnersManager.Spawn();
 
             StartCoroutine(GameLoop());
         }

@@ -30,7 +30,7 @@ namespace TankTutorial.Scripts.TaskScripts
         void Start()
         {
             var weaponAb = LoadFromDisk();
-            
+
             if (weaponAb == null) {
                 Debug.Log("Failed to load AssetBundle!");
                 return;

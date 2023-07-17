@@ -8,10 +8,10 @@ namespace TankTutorial.Managers
     [Serializable]
     public class TankManager
     {
+        [SerializeField] private string _playerName;
         [SerializeField] private Color _color;
         [SerializeField] private Transform _spawnPoint;
-
-        private string _playerName;
+        
         private string _coloredPlayerText;
         private GameObject _instance;
         private int _wins;

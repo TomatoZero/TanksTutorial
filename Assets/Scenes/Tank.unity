@@ -1703,7 +1703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numRoundToWin: 2
-  _startDelay: 3
+  _startDelay: 10
   _endDelay: 3
   _spawnersManager: {fileID: 2036845452}
   _uiManager: {fileID: 308283156}
@@ -2207,9 +2207,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tanks:
-  - _color: {r: 0, g: 0.11240196, b: 1, a: 0}
+  - _playerName: 1
+    _color: {r: 0, g: 0.11240196, b: 1, a: 0}
     _spawnPoint: {fileID: 88167079}
-  - _color: {r: 0.121542156, g: 1, b: 0.0141509175, a: 0}
+  - _playerName: 2
+    _color: {r: 0.121542156, g: 1, b: 0.0141509175, a: 0}
     _spawnPoint: {fileID: 545796253}
   _tankReference:
     m_AssetGUID: 25ba35ee1f824a34f99d367ae6ef771f

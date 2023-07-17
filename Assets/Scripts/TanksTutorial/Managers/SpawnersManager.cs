@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
+using TankTutorial.Scripts;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -10,24 +11,74 @@ namespace TankTutorial.Managers
     public class SpawnersManager : MonoBehaviour
     {
         [SerializeField] private List<TankManager> _tanks;
-        // [SerializeField] private GameObject _tankPrefab;
         [SerializeField] private AssetReference _tankReference;
+
+
+        private readonly Queue<TankManager> _validTankManagers = new Queue<TankManager>();
+
+        private readonly Dictionary<AssetReference, List<GameObject>> _spawnedTanks =
+            new Dictionary<AssetReference, List<GameObject>>();
+        
+        private readonly Dictionary<AssetReference, AsyncOperationHandle<GameObject>> _asyncOperationHandles =
+            new Dictionary<AssetReference, AsyncOperationHandle<GameObject>>();
+
+        private readonly Dictionary<AssetReference, Queue<TankManager>> _queuedSpawnRequests =
+            new Dictionary<AssetReference, Queue<TankManager>>();
 
         public event Action ResetEvent;
         public event Action EnableEvent;
         public event Action DisableEvent;
 
-        void Start()
+        public void Awake()
         {
-            AsyncOperationHandle handle = _tankReference.LoadAssetAsync<GameObject>();
-            handle.Completed += Handle_Completed;
+            foreach (var manager in _tanks) _validTankManagers.Enqueue(manager);
         }
 
-        private void Handle_Completed(AsyncOperationHandle obj)
+        public void Spawn(int count)
         {
-            if (obj.Status == AsyncOperationStatus.Succeeded)
+            for (var i = 0; i < count; i++)
+                Spawn();
+        }
+
+        public void Spawn()
+        {
+            if (!_tankReference.RuntimeKeyIsValid())
             {
-                SpawnAllTanks();
+                Debug.Log($"Invalid Key {_tankReference.RuntimeKey}");
+                return;
+            }
+
+            if (_asyncOperationHandles.ContainsKey(_tankReference))
+            {
+                if (_asyncOperationHandles[_tankReference].IsDone)
+                    SpawnTankFromLoadedReference(_tankReference, GetValidTankManager());
+                else
+                    EnqueueSpawnForAfterInitialization(_tankReference);
+            }
+            
+            LoadAndSpawn();
+        }
+
+        private void LoadAndSpawn()
+        {
+            var handle = Addressables.LoadAssetAsync<GameObject>(_tankReference);
+            _asyncOperationHandles[_tankReference] = handle;
+            handle.Completed += HandleCompletedEvent;
+        }
+
+        private void HandleCompletedEvent(AsyncOperationHandle<GameObject> asyncOperationHandle)
+        {
+            if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                SpawnTankFromLoadedReference(_tankReference, GetValidTankManager());
+                if (_queuedSpawnRequests.ContainsKey(_tankReference))
+                {
+                    while (_queuedSpawnRequests[_tankReference]?.Any() == true)
+                    {
+                        var manager = _queuedSpawnRequests[_tankReference].Dequeue();
+                        SpawnTankFromLoadedReference(_tankReference, manager);
+                    }
+                }
             }
             else
             {
@@ -35,12 +86,58 @@ namespace TankTutorial.Managers
             }
         }
 
-        public void SpawnAllTanks()
+        private void SpawnTankFromLoadedReference(AssetReference assetReference, TankManager manager)
         {
+            assetReference.InstantiateAsync(manager.SpawnPoint.position, Quaternion.identity).Completed += InstantiateAsyncCompletedEvent;
+
+            void InstantiateAsyncCompletedEvent(AsyncOperationHandle<GameObject> asyncOperationHandle)
+            {
+                manager.Instance = asyncOperationHandle.Result;
+                manager.Setup();
             
+                ResetEvent += manager.Reset;
+                EnableEvent += manager.EnableControl;
+                DisableEvent += manager.DisableControl;
+                
+                if (_spawnedTanks.ContainsKey(assetReference) == false) 
+                    _spawnedTanks[assetReference] = new List<GameObject>();
+                
+                _spawnedTanks[assetReference].Add(asyncOperationHandle.Result);
+                var notify = asyncOperationHandle.Result.AddComponent<NotifyOnDestroy>();
+                notify.Destroyed += Remove;
+                notify.AssetReference = assetReference;
+            }
+        }
+
+        private void EnqueueSpawnForAfterInitialization(AssetReference assetReference)
+        {
+            if (!_queuedSpawnRequests.ContainsKey(assetReference))
+                _queuedSpawnRequests[assetReference] = new Queue<TankManager>();
+            _queuedSpawnRequests[assetReference].Enqueue(GetValidTankManager());
+        }
+
+        private void Remove(AssetReference assetReference, NotifyOnDestroy obj)
+        {
+            Addressables.ReleaseInstance(obj.gameObject);
+
+            _spawnedTanks[assetReference].Remove(obj.gameObject);
+            if (_spawnedTanks[assetReference].Count == 0)
+            {
+                Debug.Log($"Remove all {assetReference.RuntimeKey.ToString()}");
+
+                if (_asyncOperationHandles[assetReference].IsValid())
+                    Addressables.Release(_asyncOperationHandles[assetReference]);
+
+                _asyncOperationHandles.Remove(assetReference);
+            }
+        }
+        
+        private void SpawnAllTanks()
+        {
             for (int i = 0; i < _tanks.Count; i++)
             {
-                _tanks[i].Instance = (GameObject)Instantiate(_tankReference.Asset, _tanks[i].SpawnPoint.position, _tanks[i].SpawnPoint.rotation);
+                _tanks[i].Instance = (GameObject)Instantiate(_tankReference.Asset, _tanks[i].SpawnPoint.position,
+                    _tanks[i].SpawnPoint.rotation);
                 _tanks[i].PlayerName = $"{i + 1}";
                 _tanks[i].Setup();
 
@@ -50,6 +147,11 @@ namespace TankTutorial.Managers
             }
         }
 
+        private TankManager GetValidTankManager()
+        {
+            return _validTankManagers.Dequeue();
+        }
+        
         public void ResetAllTanks()
         {
             ResetEvent?.Invoke();
@@ -71,8 +173,11 @@ namespace TankTutorial.Managers
 
             for (int i = 0; i < _tanks.Count; i++)
             {
-                if (_tanks[i].Instance.activeSelf)
-                    numTanksLeft++;
+                if (_tanks[i].Instance is not null)
+                {
+                    if (_tanks[i].Instance.activeSelf)
+                        numTanksLeft++;
+                }
             }
 
             return numTanksLeft <= 1;
@@ -80,7 +185,7 @@ namespace TankTutorial.Managers
 
         public TankManager GetRoundWinner()
         {
-            for (int i = 0; i < _tanks.Count; i++)
+            for (var i = 0; i < _tanks.Count; i++)
             {
                 if (_tanks[i].Instance.activeSelf)
                     return _tanks[i];
