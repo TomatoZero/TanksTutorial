@@ -29,13 +29,7 @@ namespace TankTutorial.Scripts.UI.InventoryView
         public void SetItemData(InventoryItem itemData)
         {
             _item = itemData;
-            DisableCountIfNeed();
             ReloadData();
-        }
-
-        private void DisableCountIfNeed()
-        {
-            // _briefInfo.enabled = false;
         }
     }
 }

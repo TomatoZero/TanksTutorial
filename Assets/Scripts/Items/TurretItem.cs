@@ -2,7 +2,7 @@ using TankTutorial.Scripts.ScriptableObject;
 
 namespace TankTutorial.Scripts.Items
 {
-    public class TurretItem: InventoryItem
+    public class TurretItem: TankPartItem
     {
         private int _numbShots;
 
