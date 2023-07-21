@@ -2016,11 +2016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponParent: {fileID: 1215650249}
-  _assetReference:
-    m_AssetGUID: 21127de5c01d2ad4eb5a3f4ee2412cab
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
 --- !u!1 &1273799333
 GameObject:
   m_ObjectHideFlags: 0

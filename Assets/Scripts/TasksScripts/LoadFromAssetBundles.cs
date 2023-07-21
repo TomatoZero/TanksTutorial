@@ -14,7 +14,6 @@ namespace TankTutorial.Scripts.TaskScripts
     public class LoadFromAssetBundles : MonoBehaviour
     {
         [SerializeField] private WeaponsController _weaponParent;
-        [SerializeField] private AssetReference _assetReference;
         
         private string _weaponAssetBundlePath;
         private string _weaponAssetBundleFolderPath;
@@ -102,14 +101,6 @@ namespace TankTutorial.Scripts.TaskScripts
         {
             var prefab = myLoadedAssetBundle.LoadAsset<GameObject>(fileName);
             _weaponParent.AddWeapon(prefab);
-        }
-        
-        
-
-        private void CreateInstant(GameObject obj)
-        {
-            _weaponParent.AddWeapon(obj);
-
         }
     }
 }

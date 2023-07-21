@@ -12,8 +12,7 @@ namespace TankTutorial.TankTutorial.Managers
     {
         [SerializeField] private List<TankManager> _tanks;
         [SerializeField] private AssetReference _tankReference;
-
-
+        
         private readonly Queue<TankManager> _validTankManagers = new Queue<TankManager>();
 
         private readonly Dictionary<AssetReference, List<GameObject>> _spawnedTanks =
