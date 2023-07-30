@@ -1,4 +1,3 @@
-using System;
 using TankTutorial.Scripts.ScriptableObject.PlayMarket;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +9,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private Transform _content;
         [SerializeField] private GameObject _gameExample;
-        
+
         private GameData _game;
 
         public void SetData(GameData gameData)
@@ -18,19 +17,38 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             _game = gameData;
             SetData();
         }
-        
+
         private void SetData()
         {
+            ClearChildren();
             foreach (var example in _game.GameExamples)
             {
-                var instant = Instantiate(_gameExample, _content);
-                var mask = instant.GetComponent<Image>();
-                var image = GetChildrenImage(instant);
-                image.sprite = example;
-                
-                var newImageSize = DefineSizeAccordingToObjectHeight(example);
-                ResizeImage(mask, newImageSize);
+                InstantiateExample(example);
             }
+        }
+
+        private void ClearChildren()
+        {
+            foreach (Transform child in _content)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        private void InstantiateExample(Sprite example)
+        {
+            var instant = Instantiate(_gameExample, _content);
+            SetExampleImage(instant, example);
+        }
+
+        private void SetExampleImage(GameObject instant, Sprite example)
+        {
+            var mask = instant.GetComponent<Image>();
+            var image = GetChildrenImage(instant);
+            image.sprite = example;
+
+            var newImageSize = DefineSizeAccordingToObjectHeight(example);
+            ResizeImage(mask, newImageSize);
         }
 
         private Image GetChildrenImage(GameObject gameObject)
@@ -49,7 +67,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             var defaultWidth = sprite.rect.width;
 
             var ratio = defaultHeight / defaultWidth;
-            
+
             var newHeight = _rectTransform.rect.height;
             var newWidth = newHeight / ratio;
 

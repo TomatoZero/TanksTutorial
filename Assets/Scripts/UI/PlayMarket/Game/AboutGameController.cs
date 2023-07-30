@@ -33,6 +33,19 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
         private void SetGenres()
         {
+            ClearChildren();
+            InstantiateGenreButtons();
+        }
+
+        private void ClearChildren()
+        {
+            foreach (Transform child in _genresContainer) {
+                Destroy(child.gameObject);
+            }
+        }
+
+        private void InstantiateGenreButtons()
+        {
             foreach (var genre in _gameInfo.GameData.Genre)
             {
                 var button = Instantiate(_genrePrefab, _genresContainer).GetComponent<Button>();

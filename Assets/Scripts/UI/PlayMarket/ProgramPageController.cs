@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TankTutorial.Scripts.UI.PlayMarket.Instance;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace TankTutorial.Scripts.UI.PlayMarket
@@ -15,7 +16,8 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private RatingController _ratingController;
         [SerializeField] private SuggestedGamesController _suggestedGames;
         [SerializeField] private SuggestedGamesController _gamesLike;
-
+        [Space, SerializeField] private UnityEvent _downloadNewGameEvent;
+        
         private Queue<GameInfo> _previousPage = new Queue<GameInfo>();
 
         private void Start()
@@ -28,6 +30,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             _previousPage.Enqueue(_game);
             _game = newGame;
             
+            _downloadNewGameEvent.Invoke();
             SetData();
         }
 
@@ -36,6 +39,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             if (_previousPage.TryDequeue(out GameInfo result))
             {
                 _game = result;
+                _downloadNewGameEvent.Invoke();
                 SetData();
             }
             else
@@ -57,8 +61,6 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
             _suggestedGames.SetData("Similar Games", _game.SimilarGames);
             _gamesLike.SetData("Games Like", _game.GamesLikeThis);
-            
-            
         }
 
         private void CloseProgramPage()

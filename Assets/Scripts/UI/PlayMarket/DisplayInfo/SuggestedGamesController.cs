@@ -30,16 +30,30 @@ namespace TankTutorial.Scripts.UI.PlayMarket
                 return;
             }
             
+            ClearChildren();
+            gameObject.SetActive(true);
             foreach (var gameData in _suggestedGame)
             {
                 CreateInstance(gameData);
             }
         }
 
+        private void ClearChildren()
+        {
+            foreach (Transform child in _gamesContainer)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
         private void CreateInstance(GameData game)
         {
             var instant = Instantiate(_gamePrefab, _gamesContainer);
+            SetUpInstant(instant, game);
+        }
 
+        private void SetUpInstant(GameObject instant, GameData game)
+        {
             var controller = instant.GetComponent<GameButtonController>();
             controller.SetData(game, _programPageController);
 
