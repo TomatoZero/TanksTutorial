@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TankTutorial.Scripts.UI.PlayMarket.Instance;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private SuggestedGamesController _suggestedGames;
         [SerializeField] private SuggestedGamesController _gamesLike;
         [Space, SerializeField] private UnityEvent _downloadNewGameEvent;
+        [SerializeField] private UnityEvent _openEvent;
+        [SerializeField] private UnityEvent _closeEvent;
         
         private Queue<GameInfo> _previousPage = new Queue<GameInfo>();
 
@@ -27,9 +30,16 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
         public void NextPage(GameInfo newGame)
         {
-            _previousPage.Enqueue(_game);
-            _game = newGame;
+            if (!gameObject.activeSelf)
+            {
+                Open();
+            }
+            else
+            {
+                _previousPage.Enqueue(_game);
+            }
             
+            _game = newGame;
             _downloadNewGameEvent.Invoke();
             SetData();
         }
@@ -44,7 +54,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             }
             else
             {
-                CloseProgramPage();
+                Close();
             }
         }
 
@@ -63,8 +73,22 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             _gamesLike.SetData("Games Like", _game.GamesLikeThis);
         }
 
-        private void CloseProgramPage()
+        private void Open()
         {
+            gameObject.SetActive(true);
+            _openEvent.Invoke();
+        }
+        
+        private void Close()
+        {
+            _closeEvent.Invoke();
+            StartCoroutine(CloseAfter());
+        }
+
+        private IEnumerator CloseAfter()
+        {
+            yield return new WaitForSeconds(1f);
+            gameObject.SetActive(false);
         }
     }
 }

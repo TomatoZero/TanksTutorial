@@ -16,7 +16,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private TMP_Text _rate;
         [SerializeField] private TMP_Text _price;
 
-        private GameData _gameData;
+        [SerializeField] private GameData _gameData;
         
         private void Start()
         {
