@@ -10,24 +10,32 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private Transform _content;
         [SerializeField] private GameObject _gameExample;
-        [SerializeField] private GameData _game;
+        
+        private GameData _game;
 
-        private void Start()
+        public void SetData(GameData gameData)
         {
+            _game = gameData;
             SetData();
         }
-
-        public void SetData()
+        
+        private void SetData()
         {
             foreach (var example in _game.GameExamples)
             {
-                var image = Instantiate(_gameExample, _content).GetComponent<Image>();
+                var instant = Instantiate(_gameExample, _content);
+                var mask = instant.GetComponent<Image>();
+                var image = GetChildrenImage(instant);
                 image.sprite = example;
-
-
+                
                 var newImageSize = DefineSizeAccordingToObjectHeight(example);
-                ResizeImage(image, newImageSize);
+                ResizeImage(mask, newImageSize);
             }
+        }
+
+        private Image GetChildrenImage(GameObject gameObject)
+        {
+            return gameObject.transform.GetChild(0).GetComponent<Image>();
         }
 
         private void ResizeImage(Image image, Vector2 size)

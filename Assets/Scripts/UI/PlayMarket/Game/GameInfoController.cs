@@ -13,13 +13,8 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private TMP_Text _additionInfo;
         [SerializeField] private Button _firstButton;
         [SerializeField] private Button _secondButton;
-        [Space, SerializeField] private GameInfo _gameInfo;
-
-
-        private void Start()
-        {
-            SetData();
-        }
+        
+        private GameInfo _gameInfo;
 
         public void SetData(GameInfo gameInfo)
         {

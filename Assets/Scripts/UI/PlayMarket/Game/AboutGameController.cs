@@ -1,4 +1,3 @@
-using System;
 using TankTutorial.Scripts.UI.PlayMarket.Instance;
 using TMPro;
 using UnityEngine;
@@ -10,15 +9,11 @@ namespace TankTutorial.Scripts.UI.PlayMarket
     {
         [SerializeField] private TMP_Text _aboutGame;
         [SerializeField] private AdditionalInformationController _additionalInformation;
+        [SerializeField] private GameExampleController _exampleController;
         [SerializeField] private Transform _genresContainer;
         [SerializeField] private GameObject _genrePrefab;
 
-        [SerializeField]private GameInfo _gameInfo;
-
-        private void Start()
-        {
-            SetData();
-        }
+        private GameInfo _gameInfo;
 
         public void SetData(GameInfo gameInfo)
         {
@@ -32,6 +27,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
             _aboutGame.text = _gameInfo.GameData.AboutGame;
             _additionalInformation.SetData(_gameInfo);
+            _exampleController.SetData(_gameInfo.GameData);
             SetGenres();
         }
 

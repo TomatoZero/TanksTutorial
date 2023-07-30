@@ -1,3 +1,4 @@
+using System;
 using TankTutorial.Scripts.UI.PlayMarket.Instance;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +14,17 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private ContactsController _contacts;
         [SerializeField] private AboutGameController _aboutGame;
         [SerializeField] private RatingController _ratingController;
-        
+
+        private void Start()
+        {
+            SetData();
+        }
+
         private void SetData()
         {
             _gameInfo.SetData(_game);
             
-            if(_game.IsInstalled) _whatNew.SetActive(true);
+            if(_game.IsInstalled) _whatNew.SetActive(true); 
             else _whatNew.SetActive(false);
             
             _aboutGame.SetData(_game);
