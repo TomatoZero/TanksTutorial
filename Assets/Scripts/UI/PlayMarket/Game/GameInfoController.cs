@@ -19,6 +19,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         public void SetData(GameInfo gameInfo)
         {
             _gameInfo = gameInfo;
+            SetData();
         }
 
         private void SetData()

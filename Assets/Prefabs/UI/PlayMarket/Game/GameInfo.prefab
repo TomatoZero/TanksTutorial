@@ -479,9 +479,6 @@ MonoBehaviour:
   _additionInfo: {fileID: 2786627138150092662}
   _firstButton: {fileID: 2573747974198836952}
   _secondButton: {fileID: 7606194927952155841}
-  _gameInfo:
-    _gameData: {fileID: 11400000, guid: c83032b0304cd0a489a4aae57c537c6f, type: 2}
-    _isInstalled: 1
 --- !u!1 &2786627138552866881
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,8 +513,8 @@ RectTransform:
   m_Father: {fileID: 949590467274115242}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 489.03503, y: 0}
   m_SizeDelta: {x: 898.07007, y: 0}
   m_Pivot: {x: 0.5, y: 0.999999}
@@ -667,9 +664,9 @@ RectTransform:
   m_Father: {fileID: 949590467274115242}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 489.035, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 489.035, y: -75.70333}
   m_SizeDelta: {x: 898.07, y: 0}
   m_Pivot: {x: 0.5, y: 1.0000004}
 --- !u!222 &2786627138855918828
