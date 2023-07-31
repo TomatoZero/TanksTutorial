@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TankTutorial.Scripts.ScriptableObject.PlayMarket;
+using TankTutorial.Scripts.UI.PlayMarket.Instance;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +14,9 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private Transform _gamesContainer;
         [Space, SerializeField] private GameObject _gamePrefab;
 
-        private List<GameData> _suggestedGame;
+        private List<GameInfo> _suggestedGame;
 
-        public void SetData(string categoryName, List<GameData> games)
+        public void SetData(string categoryName, List<GameInfo> games)
         {
             _categoryName.text = categoryName;
             _suggestedGame = games;
@@ -24,7 +25,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
         private void SetData()
         {
-            if (_suggestedGame == null)
+            if (_suggestedGame == null || _suggestedGame.Count == 0)
             {
                 gameObject.SetActive(false);
                 return;
@@ -46,13 +47,13 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             }
         }
         
-        private void CreateInstance(GameData game)
+        private void CreateInstance(GameInfo game)
         {
             var instant = Instantiate(_gamePrefab, _gamesContainer);
             SetUpInstant(instant, game);
         }
 
-        private void SetUpInstant(GameObject instant, GameData game)
+        private void SetUpInstant(GameObject instant, GameInfo game)
         {
             var controller = instant.GetComponent<GameButtonController>();
             controller.SetData(game, _programPageController);

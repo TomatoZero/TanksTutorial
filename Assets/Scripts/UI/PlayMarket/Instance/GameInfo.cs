@@ -10,14 +10,14 @@ namespace TankTutorial.Scripts.UI.PlayMarket.Instance
     {
         [SerializeField] private GameData _gameData;
         [SerializeField] private bool _isInstalled;
-        [SerializeField] private List<GameData> _similarGames;
-        [SerializeField] private List<GameData> _gamesLikeThis;
+        [SerializeField] private List<GameInfo> _similarGames;
+        [SerializeField] private List<GameInfo> _gamesLikeThis;
 
 
         public GameData GameData => _gameData;
         public bool IsInstalled => _isInstalled;
-        public List<GameData> SimilarGames => _similarGames;
-        public List<GameData> GamesLikeThis => _gamesLikeThis;
+        public List<GameInfo> SimilarGames => _similarGames;
+        public List<GameInfo> GamesLikeThis => _gamesLikeThis;
 
         public GameInfo() { }
 

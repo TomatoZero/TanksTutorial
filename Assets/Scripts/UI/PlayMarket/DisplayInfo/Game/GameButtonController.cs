@@ -16,20 +16,20 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private TMP_Text _rate;
         [SerializeField] private TMP_Text _price;
 
-        [SerializeField] private GameData _gameData;
+        [SerializeField] private GameInfo _gameData;
         
         private void Start()
         {
             // SetData();
         }
 
-        public void SetData(GameData gameData)
+        public void SetData(GameInfo gameData)
         {
             _gameData = gameData;
             SetData();
         }
         
-        public void SetData(GameData gameData, ProgramPageController pageController)
+        public void SetData(GameInfo gameData, ProgramPageController pageController)
         {
             _gameData = gameData;
             _pageController = pageController;
@@ -38,15 +38,18 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
         public void Click()
         {
-            _pageController.NextPage(new GameInfo(_gameData, false));
+            _pageController.NextPage(_gameData);
         }
         
         private void SetData()
         {
-            _ico.sprite = _gameData.Ico;
-            _name.text = _gameData.Name;
-            _rate.text = _gameData.Rate.ToString(CultureInfo.InvariantCulture);
-            _price.text = _gameData.Price.ToString(CultureInfo.CurrentCulture);
+            _ico.sprite = _gameData.GameData.Ico;
+            _name.text = _gameData.GameData.Name;
+            _rate.text = _gameData.GameData.Rate.ToString(CultureInfo.InvariantCulture);
+            
+            if(_gameData.GameData.Price == 0) return;
+            
+            _price.text = _gameData.GameData.Price.ToString(CultureInfo.CurrentCulture);
         }
     }
 }

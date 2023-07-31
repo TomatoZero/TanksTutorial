@@ -14,7 +14,8 @@ namespace TankTutorial.Scripts.ScriptableObject.PlayMarket
         [SerializeField] private string _additionInfo;
         [SerializeField, TextArea] private string _aboutGame;
         [SerializeField] private List<String> _genre;
-        [Space] [SerializeField] private List<Sprite> _gameExamples;
+        [Space] [SerializeField] private Sprite _mainExample;
+        [SerializeField] private List<Sprite> _gameExamples;
         [SerializeField] private float _price;
         [Space] [SerializeField, Range(0, 5)] private float _rate;
         [SerializeField] private List<int> _rates;
@@ -30,6 +31,8 @@ namespace TankTutorial.Scripts.ScriptableObject.PlayMarket
         public string AboutGame => _aboutGame;
 
         public List<string> Genre => _genre;
+
+        public Sprite MainExample => _mainExample;
 
         public List<Sprite> GameExamples => _gameExamples;
 
