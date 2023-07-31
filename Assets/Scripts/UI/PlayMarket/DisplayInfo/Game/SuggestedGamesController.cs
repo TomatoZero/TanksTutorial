@@ -56,9 +56,6 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         {
             var controller = instant.GetComponent<GameButtonController>();
             controller.SetData(game, _programPageController);
-
-            var button = instant.GetComponent<Button>();
-            button.onClick.AddListener(controller.Click);
         }
     }
 }
