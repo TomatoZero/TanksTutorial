@@ -248,7 +248,11 @@ MonoBehaviour:
   _name: {fileID: 3406960631011341132}
   _rate: {fileID: 7377458750071931263}
   _price: {fileID: 198246523605696465}
-  _gameData: {fileID: 0}
+  _gameData:
+    _gameData: {fileID: 0}
+    _isInstalled: 0
+    _similarGames: []
+    _gamesLikeThis: []
 --- !u!1 &4638709344749071840
 GameObject:
   m_ObjectHideFlags: 0
