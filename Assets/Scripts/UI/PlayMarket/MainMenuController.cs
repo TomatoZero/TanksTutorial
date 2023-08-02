@@ -18,9 +18,9 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
         private void Start()
         {
-            _firstWithExample.SetData(_games[0], _pageController);
+            _firstWithExample.SetData(_games[4], _pageController);
             _secondWithExample.SetData(_games[1], _pageController);
-            _thirstWithExample.SetData(_games[2], _pageController);
+            _thirstWithExample.SetData(_games[5], _pageController);
 
             _suggestedGames.SetData("For you", _games);
             _firstContainer.SetData(_games.ToArray(), _pageController);

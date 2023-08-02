@@ -47,9 +47,15 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             _name.text = _gameData.GameData.Name;
             _rate.text = _gameData.GameData.Rate.ToString(CultureInfo.InvariantCulture);
             
-            if(_gameData.GameData.Price == 0) return;
-            
-            _price.text = _gameData.GameData.Price.ToString(CultureInfo.CurrentCulture);
+            if(_gameData.GameData.Price == 0)
+            {
+                _price.gameObject.SetActive(false);
+            }
+            else
+            {
+                _price.gameObject.SetActive(true);
+                _price.text = _gameData.GameData.Price.ToString(CultureInfo.CurrentCulture);
+            }
         }
     }
 }

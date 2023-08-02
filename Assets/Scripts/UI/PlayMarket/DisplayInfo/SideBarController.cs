@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,12 +11,19 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
         public void Open()
         {
+            gameObject.SetActive(true);
             _openEvent.Invoke();
         }
 
         public void Close()
         {
             _closeEvent.Invoke();
+        }
+
+        private IEnumerator DeactivateObject()
+        {
+            yield return new WaitForSeconds(1);
+            gameObject.SetActive(false);
         }
     }
 }

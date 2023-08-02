@@ -21,7 +21,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
         [SerializeField] private UnityEvent _openEvent;
         [SerializeField] private UnityEvent _closeEvent;
         
-        private Queue<GameInfo> _previousPage = new Queue<GameInfo>();
+        private Stack<GameInfo> _previousPage = new Stack<GameInfo>();
 
         private void Start()
         {
@@ -36,7 +36,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
             }
             else
             {
-                _previousPage.Enqueue(_game);
+                _previousPage.Push(_game);
             }
             
             _game = newGame;
@@ -46,7 +46,7 @@ namespace TankTutorial.Scripts.UI.PlayMarket
 
         public void PrevPage()
         {
-            if (_previousPage.TryDequeue(out GameInfo result))
+            if (_previousPage.TryPop(out GameInfo result))
             {
                 _game = result;
                 _downloadNewGameEvent.Invoke();
