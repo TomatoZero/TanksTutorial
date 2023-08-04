@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SafaArea : MonoBehaviour
@@ -7,18 +8,28 @@ public class SafaArea : MonoBehaviour
 
     private Rect _currentSafaArea = new Rect();
     private ScreenOrientation _currentOrientation = ScreenOrientation.AutoRotation;
+    private bool _isPanelTransformNull;
 
     private void Start()
     {
+        _isPanelTransformNull = _panelTransform == null;
         _currentOrientation = Screen.orientation;
         _currentSafaArea = Screen.safeArea;
         
         ApplySafaArea();
     }
 
+    private void Update()
+    {
+        if ((_currentSafaArea != Screen.safeArea))
+        {
+            ApplySafaArea();
+        }
+    }
+
     private void ApplySafaArea()
     {
-        if(_panelTransform == null) return;
+        // if(_isPanelTransformNull) return;
 
         var safaArea = Screen.safeArea;
         var pixelRect = _canvas.pixelRect;
