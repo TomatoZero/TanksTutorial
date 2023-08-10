@@ -1,5 +1,8 @@
 using System;
+<<<<<<< HEAD
 using UnityEditor.DeviceSimulation;
+=======
+>>>>>>> ThreeTry/master
 using UnityEngine;
 
 public class SafaArea : MonoBehaviour
@@ -22,6 +25,7 @@ public class SafaArea : MonoBehaviour
         ApplySafaArea();
     }
 
+<<<<<<< HEAD
     private void FixedUpdate()
     {
         if ((_currentOrientation != Screen.orientation) || (_currentSafaArea != Screen.safeArea) || _canvasPixelRect != _canvas.pixelRect)
@@ -32,12 +36,23 @@ public class SafaArea : MonoBehaviour
             Debug.Log("Screen.safeArea" + Screen.safeArea + " " + Screen.safeArea.position);
             Debug.Log($"_canvas.pixelRect {_canvas.pixelRect}");
             
+=======
+    private void Update()
+    {
+        if ((_currentSafaArea != Screen.safeArea))
+        {
+            ApplySafaArea();
+>>>>>>> ThreeTry/master
         }
     }
 
     private void ApplySafaArea()
     {
+<<<<<<< HEAD
         if(_isPanelTransformNull) return;
+=======
+        // if(_isPanelTransformNull) return;
+>>>>>>> ThreeTry/master
 
         var safaArea = Screen.safeArea;
         var pixelRect = _canvas.pixelRect;
