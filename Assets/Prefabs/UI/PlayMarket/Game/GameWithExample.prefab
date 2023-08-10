@@ -214,11 +214,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-<<<<<<< HEAD
       - m_Target: {fileID: 1225294345814164868}
-=======
-      - m_Target: {fileID: 0}
->>>>>>> ThreeTry/master
         m_TargetAssemblyTypeName: TankTutorial.Scripts.UI.PlayMarket.GameButtonController,
           Assembly-CSharp
         m_MethodName: Click
