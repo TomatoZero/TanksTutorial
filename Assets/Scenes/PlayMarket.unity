@@ -5860,6 +5860,7 @@ GameObject:
   - component: {fileID: 667448527}
   - component: {fileID: 667448528}
   - component: {fileID: 667448529}
+  - component: {fileID: 667448532}
   m_Layer: 5
   m_Name: GamePage
   m_TagString: Untagged
@@ -5963,7 +5964,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667448521}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e6f4fe15e536744ba4738dbf0d56919, type: 3}
   m_Name: 
@@ -6149,6 +6150,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &667448532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667448521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97afc556caea1c44969477eb7ddec74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConformX: 1
+  ConformY: 1
+  Logging: 0
 --- !u!224 &669091510 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8062705581930940088, guid: 98a49e0eee0f83c4bad7f49158a20b7d,
@@ -15871,6 +15887,7 @@ GameObject:
   - component: {fileID: 1708457068}
   - component: {fileID: 1708457067}
   - component: {fileID: 1708457069}
+  - component: {fileID: 1708457070}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -15946,13 +15963,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708457065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e6f4fe15e536744ba4738dbf0d56919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 1147654956}
   _panelTransform: {fileID: 1708457066}
+--- !u!114 &1708457070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708457065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97afc556caea1c44969477eb7ddec74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConformX: 1
+  ConformY: 1
+  Logging: 0
 --- !u!1 &1709819041
 GameObject:
   m_ObjectHideFlags: 0
@@ -15968,6 +16000,7 @@ GameObject:
   - component: {fileID: 1709819046}
   - component: {fileID: 1709819047}
   - component: {fileID: 1709819048}
+  - component: {fileID: 1709819049}
   m_Layer: 5
   m_Name: SideBar
   m_TagString: Untagged
@@ -16152,6 +16185,21 @@ MonoBehaviour:
   _canvasGroup: {fileID: 1709819045}
   _rectTransform: {fileID: 1709819042}
   _fadeTime: 1
+--- !u!114 &1709819049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709819041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97afc556caea1c44969477eb7ddec74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConformX: 1
+  ConformY: 1
+  Logging: 0
 --- !u!1 &1710406220
 GameObject:
   m_ObjectHideFlags: 0
